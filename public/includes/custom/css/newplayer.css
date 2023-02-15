@@ -1,0 +1,32 @@
+@media (min-width: 319px) and (max-width: 992px) {
+
+    .data-info{
+        width: 100% !important;
+    }
+
+    .data-image{
+        width: 100% !important;
+    }
+
+    input{
+        min-width: 75% !important;
+    }
+    input[type="file"]{
+        min-width: 75% !important;
+    }
+
+    select{
+        min-width: 75% !important;
+    }
+
+    button.add-player{
+        min-width: 75% !important
+    }
+
+    
+}
+
+
+.swal2-html-container{
+    font-size: 1.4em !important;
+}

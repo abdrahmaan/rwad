@@ -1,0 +1,25 @@
+@media (min-width: 319px) and (max-width: 992px) {
+
+    .branch-info{
+        width: 100% !important;
+    }
+
+
+    input{
+        min-width: 75% !important;
+    }
+
+    select{
+        min-width: 75% !important;
+    }
+
+    button.add-branch{
+        min-width: 75% !important
+    }
+
+    
+}
+
+.swal2-html-container{
+    font-size: 1.4em !important;
+}

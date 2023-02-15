@@ -1,0 +1,29 @@
+@media (min-width: 319px) and (max-width: 992px) {
+
+    .payment-info{
+        width: 100% !important;
+    }
+
+
+    input{
+        min-width: 75% !important;
+    }
+
+    select{
+        min-width: 75% !important;
+    }
+
+    button.add-payment{
+        min-width: 75% !important
+    }
+
+    
+}
+
+
+@media (min-width: 319px) and (max-width: 567px){
+header h3.title {
+    font-size: 16px !important;
+}
+
+}
