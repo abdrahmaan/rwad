@@ -1,121 +1,121 @@
 @extends('admin.layouts.master')
 
-@section('title',"تعديل بيانات لاعب")
+@section('title',"تعديل بيانات سيارة")
+@section('icon',"bi bi-car-front-fill mx-1")
 
 
 @section('content')
 
     
-    <form action="/admin/players/{{$Player->id}}" method="post" enctype="multipart/form-data">
+    <form action="/admin/cars/{{$Car->id}}" method="post" enctype="multipart/form-data">
       @csrf
       @method("PUT")
   <div class="player-data d-flex flex-column align-items-center flex-lg-row flex-lg-row-reverse mt-4" style="min-height: calc(100vh - 90px);">
 
+
+      <div class="container">
+        <div class="data-info row p-0 m-0 w-100 flex-row-reverse justify-content-center align-items-center">
+          <div class="data-text col-4 my-2 text-center mb-3">
+            <label class="text-light fs-4 mb-2">طباشيرى</label>
+            <input id="name" class="form-control w-100 text-center mx-auto" name="Tabashery" type="text" value="{{$Car->Tabashery}}" placeholder="طباشيرى">
+          </div>
+          <div class="data-text col-4 my-2 text-center mb-3">
+            <label class="text-light fs-4 mb-2">رقم اللوحة</label>
+            <input class="form-control w-100 text-center mx-auto" name="PlateNumber" value="{{$Car->PlateNumber}}" type="text" placeholder="أ ل ف - 678">
+          </div>
+          <div class="data-text col-4 my-2 text-center mb-3">
+            <label class="text-light fs-4 mb-2">نوع السيارة</label>
+            <select class=" w-100 text-center form-control mx-auto" name="CarType" value="{{$Car->CarType}}" id="">
+              <option value="ميكروباص">ميكروباص</option>
+              <option value="نقل أموال">نقل أموال</option>
+              <option value="ملاكى">ملاكى</option>
+              <option value="نصف نقل">نصف نقل</option>
+              <option value="موتوسيكل">موتوسيكل</option>
+          </select>
+          </div>
+          <div class="data-text col-4 my-2 text-center mb-3">
+            <label class="text-light fs-4 mb-2">عداد البداية</label>
+            <input class="form-control w-100 text-center mx-auto" name="SCounter" value="{{$Car->SCounter}}" type="number" placeholder="Ex. 567666">
+          </div>
+          <div class="data-text col-4 my-2 text-center mb-3">
+            <label class="text-light fs-4 mb-2">الفرع</label>
+            <select class="w-100 text-center form-control mx-auto" name="BranchName" name="" id="">
+              @isset($branches)
+                @foreach ($branches as $branch)
+  
+                  <option value="{{$branch->BranchName}}">{{$branch->BranchName}}</option>
+                    
+                @endforeach
+              @endisset
+          </select>
+          </div>
+          <div class="col-7">
+
+            <button type="submit" class=" col-5 d-block btn add-player btn-danger text-light mt-4  mx-auto d-block">تعديل البيانات</button>
+
+          </div>
+
+          <div class="col-7">
+
+            <a href="/admin/cars" class="col-5 d-block btn add-player btn-light text-dark mt-4  mx-auto d-block">إلغاء</a>
+
+          </div>
+  
+        </div>
+      </div>
+      </div>
     
-    <div class="data-info  w-50 d-flex flex-column justify-content-center align-items-center">
-        <div class="data-text w-100 text-center mb-3">
-          <label class="text-warning fs-4 mb-2">إسم اللاعب</label>
-          <input id="name" class="form-control w-50 text-center mx-auto" name="PlayerName" value="{{$Player->PlayerName}}" type="text" placeholder="إسم اللاعب ثلاثى">
-        </div>
-        <div class="data-text w-100 text-center mb-3">
-          <label class="text-warning fs-4 mb-2">السن</label>
-          <input class="form-control w-50 text-center mx-auto" name="Age" value="{{$Player->Age}}" type="number" placeholder="السن">
-        </div>
-        <div class="data-text w-100 text-center mb-3">
-          <label class="text-warning fs-4 mb-2">رقم التيليفون</label>
-          <input class="form-control w-50 text-center mx-auto" name="Phone" value="{{$Player->Phone1}}" type="number" placeholder="Ex. 0111XXXXXXX">
-        </div>
-        <div class="data-text w-100 text-center mb-3">
-          <label class="text-warning fs-4 mb-2">رقم ولى الأمر</label>
-          <input class="form-control w-50 text-center mx-auto" name="Phone2" value="{{$Player->Phone2}}" type="number" placeholder="Ex. 0111XXXXXXX">
-        </div>
-        <div class="data-text w-100 text-center mb-3">
-          <label class="text-warning fs-4 mb-2">العنوان</label>
-          <input class="form-control w-50 text-center mx-auto" name="Address" value="{{$Player->Address}}" type="text" placeholder="العنوان">
-        </div>
-        <div class="data-text w-100 text-center mb-3">
-          <label class="text-warning fs-4 mb-2">تاريخ الميلاد</label>
-          <input class="form-control w-50 text-center mx-auto" name="DateOfBirth" {{$Player->DateOfBirth}} type="date">
-        </div>
-        <div class="data-text w-100 text-center mb-3">
-          <label class="text-warning fs-4 mb-2">تصنيف اللاعب</label>
-          <select class="w-25 text-center form-control mx-auto" name="CategoryName" name="" id="">
-            <option value="تحت 21 سنة">تحت 21 سنة</option>
-            <option value="تحت 17 سنة">تحت 17 سنة</option>
-            <option value="تحت 13 سنة ">تحت 13 سنة</option>
-        </select>
-        </div>
-        <div class="data-text w-100 text-center mb-3">
-          <label class="text-warning fs-4 mb-2">مركز اللاعب</label>
-          <select class="w-25 text-center form-control mx-auto" name="Position" name="" id="">
-            <option disabled value="">الدفاع</option>
-            <option value="LB">LB</option>
-            <option value="RB">RB</option>
-            <option value="CB">CB</option>
-            <option disabled value="">خط الوسط</option>
-            <option value="CMF">CMF</option>
-            <option value="LMF">LMF</option>
-            <option value="RMF">RMF</option>
-            <option value="DMF">DMF</option>
-            <option value="AMF">AMF</option>
-            <option disabled value="">الهجوم</option>
-            <option value="LWF">LWF</option>
-            <option value="RWF">RWF</option>
-            <option value="CF">CF</option>
-            <option value="SS">SS</option>
-        </select>
-        </div>
-        <div class="data-text w-100 text-center mb-3">
-          <label class="text-warning fs-4 mb-2">الطول</label>
-          <input class="form-control w-25 text-center mx-auto" name="Height" value="{{$Player->Height}}" type="text" placeholder="الطول">
-        </div>
-        <div class="data-text w-100 text-center mb-3">
-          <label class="text-warning fs-4 mb-2">الوزن</label>
-          <input class="form-control w-25 text-center mx-auto" name="Weight"  value="{{$Player->Height}}" type="text" placeholder="الوزن">
-        </div>
-        <div class="data-text w-100 text-center mb-3">
-          <label class="text-warning fs-4 mb-2">المجموعة</label>
-          <select class="w-25 text-center form-control mx-auto" name="GroupName" name="" id="">
-            @isset($groups)
-              @foreach ($groups as $group)
-
-                <option value="{{$group->GroupName}} - {{$group->Day}} - {{$group->Time}}">{{$group->GroupName}} - {{$group->Day}} - {{$group->Time}}</option>
-                  
-              @endforeach
-            @endisset
-        </select>
-        </div>
-        <div class="data-text w-100 text-center mb-3">
-          <label class="text-warning fs-4 mb-2">الفرع</label>
-          <select class="w-25 text-center form-control mx-auto" name="BranchName" name="" id="">
-            @isset($branches)
-            @foreach ($branches as $branch)
-
-              <option value="{{$branch->BranchName}}">{{$branch->BranchName}}</option>
-                
-            @endforeach
-          @endisset
-        </select>
-        </div>
-        <div class="data-text w-100 text-center mb-3">
-          <label class="text-warning fs-4 mb-2">فيديو للاعب</label>
-          <input class="form-control w-50 text-center mx-auto"  value="{{$Player->VideoLink}}" name="VideoLink" type="text" placeholder="لينك فيديو Youtube">
-        </div>
-      </div>
-  
-      <div class="data-image  w-50 d-flex flex-column justify-content-center align-items-center">
-        <img class="player-img" src="/includes/img/user.png" style="max-width: 220px; margin: 15px auto;" alt=""> 
-        <label class="text-warning fs-4 mb-2">صورة اللاعب</label>
-          <input class="form-control w-50 text-center mx-auto" name="PlayerImage" type="file" accept="image/png, image/jpeg">
-      </div>
-    </div>
   
   
-    <button type="submit" class="btn add-player btn-warning text-dark mt-4  w-25 mx-auto d-block">تعديل البيانات</button>
-    <a href="/admin/players" class="btn add-player btn-danger text-light text-dark mt-4  w-25 mx-auto d-block">إلغاء</a>
+  
 
 </form>
 
-<script src="{{asset('includes/custom/js/newplayer.js')}}"></script>
+{{-- <script src="{{asset('includes/custom/js/newplayer.js')}}"></script> --}}
+
+
+@section('script')
+    
+<script>
+
+  // Focus
+  window.onload = () =>{
+    let inputs = document.querySelectorAll("input");
+
+    console.log(inputs);
+
+    inputs[2].focus();
+  }
+
+
+  // Save Data Shortcut
+document.addEventListener('keydown', (e) => {
+
+  let form = document.querySelector("form");
+
+  let newInputs = document.querySelectorAll("input");
+
+
+  // 48 = 0 key
+  // 32 = space key
+
+  if(e.ctrlKey && e.keyCode == 32) {
+
+    form.submit();
+
+  }
+
+
+  if(e.keyCode == 13){
+    e.preventDefault();
+  }
+
+
+
+});
+
+</script>
+
+@endsection 
     
 @endsection

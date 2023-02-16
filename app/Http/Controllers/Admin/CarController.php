@@ -4,11 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Player;
-use App\Models\Skill;
-use App\Models\Group;
-use App\Models\SiteData;
 use App\Models\Branch;
+use App\Models\Car;
 
 use Illuminate\Http\Request;
 
@@ -16,25 +13,84 @@ use Illuminate\Http\Request;
 class CarController extends Controller
 {
  
-    public function index()
+    public function index(Request $request)
     {
 
-        $players = Player::all();
-        $Groups = Group::all();
+         $Branches = Branch::all();
+    
+            
+          return view('admin.car.index',["Branches" => $Branches]);
+    
+        
+    }
+    
+    public function search(Request $request){
+
+        $Tabashery = $request->Tabashery;
+        $CarType = $request->CarType;
+        $BranchName = $request->BranchName;
+
+        $Data = array();
+
         $Branches = Branch::all();
+        $Cars = Car::all();
 
 
-        return view('admin.car.index',["players"=>$players,"Groups" => $Groups,"Branches" => $Branches]);
+        foreach($Cars as $car) {
+
+            $TabasheryFilter = false;
+            $CarTypeFilter = false;
+            $BranchFilter = false;
+    
+            if($BranchName == "الكل"){
+                $BranchFilter = true;
+             } else {
+                if($BranchName == $car->BranchName){
+                    $BranchFilter = true;
+                } else {
+                    $BranchFilter == false;
+                }
+            }
+            
+            if($CarType == "الكل"){
+                $CarTypeFilter = true;
+             } else {
+                if($CarType == $car->CarType){
+                    $CarTypeFilter = true;
+                } else {
+                    $CarTypeFilter == false;
+                }
+            }
+
+
+            if($Tabashery == ""){
+                $TabasheryFilter = true;
+             } else {
+                if($Tabashery == $car->Tabashery || $Tabashery == $car->PlateNumber ){
+                    $TabasheryFilter = true;
+                } else {
+                    $TabasheryFilter == false;
+                }
+            }
+
+
+           if($BranchFilter && $CarTypeFilter && $TabasheryFilter){
+                 $Data[] = $car;
+           }
+
+        }
+        
+        return view('admin.car.index',["Branches" => $Branches, "Cars"=> $Data]);
+
     }
 
 
+    
     public function create()
     {
-        $GroupsName = Group::all();
         $BranchesName = Branch::all();
         
         $passData = [
-            "groups"=> $GroupsName,
             "branches"=>$BranchesName];
 
         return view("admin.car.create", $passData);
@@ -43,110 +99,38 @@ class CarController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
-            "PlayerName" => 'required|regex:/[ء-ي\s]/',
-            "Age" => 'required|numeric',
-            "Phone" => 'required',
-            "Phone2" => 'required',
-            "Address" => 'required|regex:/[ء-ي\s]/',
-            "DateOfBirth" => 'required',
-            "Position" => 'required',
-            "Height" => 'required|numeric',
-            "Weight" => 'required|numeric',
-            "GroupName" => 'required',
-            "BranchName" => 'required',
-            "CategoryName" => 'required',
-            "VideoLink" =>'nullable|regex:/^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/',
-        ],
-        [
-           
-            "PlayerName.required" => 'من فضلك أدخل إسم اللاعب',
-            "PlayerName.regex" => 'أدخل إسم اللاعب ثلاثى باللغة العربية',
-            "Age.required" => 'من فضلك أدخل السن',
-            "Age.numeric" => 'السن بالأرقام فقط',
-            "Address.required" => 'من فضلك أدخل العنوان',
-            "Address.regex" => 'العنوان باللغة العربية و الأرقام',
-            "Phone.required" => 'من فضلك أدخل رقم التيليفون',
-            "Phone.regex" => 'من فضلك أدخل رقم تيليفون  لاعب صحيح',
-            "Phone2.required" => 'من فضلك أدخل رقم ولى الأمر',
-            "Phone2.regex" => 'من فضلك أدخل رقم تيليفون  ولى أمر صحيح',
-            "DateOfBirth.required" => 'من فضلك أدخل تاريخ الميلاد',
-            "Position.required" => 'من فضلك أدخل المركز',
-            "Height.required" => 'من فضلك أدخل الطول',
-            "Height.numeric" => 'من فضلك أدخل الطول بالأرقام',
-            "Weight.required" => 'من فضلك أدخل الوزن',
-            "Weight.numeric" => 'من فضلك أدخل الوزن بالأرقام',
-            "GroupName.required" => 'من فضلك أدخل إسم المجموعة',
-            "BranchName.required" => 'من فضلك أدخل الفرع',
-            "CategoryName.required" => 'من فضلك أدخل لينك فيديو صحيح',
-            "VideoLink.regex" =>'من فضلك أدخل لينك فيديو صحيح',
+            "Tabashery" => "required|numeric|unique:cars,Tabashery",
+            "PlateNumber" => "required|unique:cars,PlateNumber",
+            "CarType" => "required",
+            "SCounter" => "required|numeric|min:0",
+            "BranchName" => "required",
+        ],[
+            "Tabashery.required" => "حقل الطباشيري مطلوب",
+            "Tabashery.numeric" => "حقل الطباشيري يجب أن يكون رقم",
+            "Tabashery.unique" => "يوجد سيارة من قبل بنفس رقم طباشيري",
+            "PlateNumber.required" => "حقل لوحة السيارة مطلوب",
+            "PlateNumber.unique" => "لوحة السيارة مسجلة من قبل",
+            "CarType.required" => "حقل نوع السيارة مطلوب",
+            "SCounter.required" => "حقل عداد البداية مطلوب",
+            "SCounter.numeric" => "حقل عداد البداية يجب أن يكون رقم صحيح",
+            "SCounter.min" => "حقل عداد البداية يجب أن يكون رقم صحيح",
+            "BranchName.required" => "حقل الفرع مطلوب",
         ]);
 
 
-      $file =  $request->file('PlayerImage');
-
-      
-        if($file !== null){
-
-            $fileName = time() . ".jpg";
-
-            $file->move(public_path('playerimages'),$fileName); 
-
-            Player::create([
-                "PlayerName" => $request->PlayerName,
-                "Age" => $request->Age,
-                "Address" => $request->Address,
-                "Phone1" => $request->Phone,
-                "Phone2" => $request->Phone2,
-                "DateOfBirth" => $request->DateOfBirth,
-                "Position" => $request->Position,
-                "Height" => $request->Height,
-                "Weight" => $request->Weight,
-                "GroupName" => $request->GroupName,
+            $insert = Car::create([
+                "Tabashery" => $request->Tabashery,
+                "PlateNumber" => $request->PlateNumber,
+                "CarType" => $request->CarType,
+                "SCounter" => $request->SCounter,
                 "BranchName" => $request->BranchName,
-                "CategoryName" => $request->CategoryName,
-                "Status" => "Active",
-                "VideoLink" =>$request->VideoLink,
-                "ImagePath" =>$fileName,
-                "TotalPhy" => 0,
-                "TotalAdaKhaty" => 0,
-                "TotalMahary" => 0,
-                "TotalMentalState" => 0,
-                "TotalBrainState" => 0
             ]);
 
 
-
-
-        return redirect("/admin/players/create")->with("message","تم إضافة اللاعب بنجاح");
-        } else {
-
-        Player::create([
-            "PlayerName" => $request->PlayerName,
-            "Age" => $request->Age,
-            "Address" => $request->Address,
-            "Phone1" => $request->Phone,
-            "Phone2" => $request->Phone2,
-            "DateOfBirth" => $request->DateOfBirth,
-            "Position" => $request->Position,
-            "Height" => $request->Height,
-            "Weight" => $request->Weight,
-            "GroupName" => $request->GroupName,
-            "BranchName" => $request->BranchName,
-            "CategoryName" => $request->CategoryName,
-            "Status" => "Active",
-            "VideoLink" =>$request->VideoLink,
-            "TotalPhy" => 0,
-            "TotalAdaKhaty" => 0,
-            "TotalMahary" => 0,
-            "TotalMentalState" => 0,
-            "TotalBrainState" => 0
-        ]);
-
-        return redirect("/admin/players/create")->with("message","تم إضافة اللاعب بنجاح");
+        return redirect("/admin/cars/create")->with("message","تم إضافة السيارة بنجاح");
         
 
-        }
+        
 
     }
 
@@ -169,152 +153,59 @@ class CarController extends Controller
 
     public function edit($id) 
     {
-        $GroupsName = Group::all();
         $BranchesName = Branch::all();
         
+       
+
+        $Car = Car::where("id",$id)->get()->first();
+
         $passData = [
-            "groups"=> $GroupsName,
-            "branches"=>$BranchesName];
+            "Branches"=>$BranchesName,
+            "Car" => $Car
+        ];
 
-        $data = Player::where("id",$id)->get()->first();
-        return view("admin.player.edit", ["Player" => $data, 'groups'=> $GroupsName, 'branches'=> $BranchesName]);
-
+        return view("admin.car.edit", ['branches'=> $BranchesName, "Car"=> $Car]);
     }
 
     public function update(Request $request, $id)
     {
-
         $request->validate([
-
-            "PlayerName" => 'required|regex:/[ء-ي\s]/',
-            "Age" => 'required|numeric',
-            "Phone" => 'required',
-            "Phone2" => 'required',
-            "Address" => 'required|regex:/[ء-ي\s]/',
-            "DateOfBirth" => 'required',
-            "Position" => 'required',
-            "Height" => 'required|numeric',
-            "Weight" => 'required|numeric',
-            "GroupName" => 'required',
-            "BranchName" => 'required',
-            "CategoryName" => 'required',
-            "VideoLink" =>'nullable|regex:/^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/',
-        ],
-        [
-           
-            "PlayerName.required" => 'من فضلك أدخل إسم اللاعب',
-            "PlayerName.regex" => 'أدخل إسم اللاعب ثلاثى باللغة العربية',
-            "Age.required" => 'من فضلك أدخل السن',
-            "Age.numeric" => 'السن بالأرقام فقط',
-            "Address.required" => 'من فضلك أدخل العنوان',
-            "Address.regex" => 'العنوان باللغة العربية و الأرقام',
-            "Phone.required" => 'من فضلك أدخل رقم التيليفون',
-            "Phone.regex" => 'من فضلك أدخل رقم تيليفون  لاعب صحيح',
-            "Phone2.required" => 'من فضلك أدخل رقم ولى الأمر',
-            "Phone2.regex" => 'من فضلك أدخل رقم تيليفون  ولى أمر صحيح',
-            "DateOfBirth.required" => 'من فضلك أدخل تاريخ الميلاد',
-            "Position.required" => 'من فضلك أدخل المركز',
-            "Height.required" => 'من فضلك أدخل الطول',
-            "Height.numeric" => 'من فضلك أدخل الطول بالأرقام',
-            "Weight.required" => 'من فضلك أدخل الوزن',
-            "Weight.numeric" => 'من فضلك أدخل الوزن بالأرقام',
-            "GroupName.required" => 'من فضلك أدخل إسم المجموعة',
-            "BranchName.required" => 'من فضلك أدخل الفرع',
-            "CategoryName.required" => 'من فضلك أدخل لينك فيديو صحيح',
-            "VideoLink.regex" =>'من فضلك أدخل لينك فيديو صحيح',
+            "Tabashery" => "required|numeric",
+            "PlateNumber" => "required",
+            "CarType" => "required",
+            "SCounter" => "required|numeric|min:0",
+            "BranchName" => "required",
+        ],[
+            "Tabashery.required" => "حقل الطباشيري مطلوب",
+            "PlateNumber.required" => "حقل لوحة السيارة مطلوب",
+            "CarType.required" => "حقل نوع السيارة مطلوب",
+            "SCounter.required" => "حقل عداد البداية مطلوب",
+            "SCounter.numeric" => "حقل عداد البداية يجب أن يكون رقم صحيح",
+            "SCounter.min" => "حقل عداد البداية يجب أن يكون رقم صحيح",
+            "BranchName.required" => "حقل الفرع مطلوب",
         ]);
 
-        $file =  $request->file('PlayerImage');
 
-      
-        if($file !== null){
-
-            $fileName = time() . ".jpg";
-
-            $file->move(public_path('playerimages'),$fileName); 
-
-            Player::where("id",$id)->update([
-                "PlayerName" => $request->PlayerName,
-                "Age" => $request->Age,
-                "Address" => $request->Address,
-                "Phone1" => $request->Phone,
-                "Phone2" => $request->Phone2,
-                "DateOfBirth" => $request->DateOfBirth,
-                "Position" => $request->Position,
-                "Height" => $request->Height,
-                "Weight" => $request->Weight,
-                "GroupName" => $request->GroupName,
+            $insert = Car::where("id",$id)->update([
+                "Tabashery" => $request->Tabashery,
+                "PlateNumber" => $request->PlateNumber,
+                "CarType" => $request->CarType,
+                "SCounter" => $request->SCounter,
                 "BranchName" => $request->BranchName,
-                "CategoryName" => $request->CategoryName,
-                "VideoLink" =>$request->VideoLink,
-                "ImagePath" =>$fileName,
             ]);
 
 
-
-
-        return redirect("/admin/players")->with("message","تم تعديل البيانات بنجاح");
-
-
-        } else {
-
-            Player::where("id",$id)->update([
-                "PlayerName" => $request->PlayerName,
-                "Age" => $request->Age,
-                "Address" => $request->Address,
-                "Phone1" => $request->Phone,
-                "Phone2" => $request->Phone2,
-                "DateOfBirth" => $request->DateOfBirth,
-                "Position" => $request->Position,
-                "Height" => $request->Height,
-                "Weight" => $request->Weight,
-                "GroupName" => $request->GroupName,
-                "BranchName" => $request->BranchName,
-                "CategoryName" => $request->CategoryName,
-                "VideoLink" =>$request->VideoLink,
-            ]);
-        return redirect("/admin/players")->with("message","تم تعديل البيانات بنجاح");
-
-    }
-}
-
-    
-    public function getAllPlayers(){
-
-      $data =  Player::get();
-
-      $res = array();
-
-      $res["status"] = 1;
-      $res["response"] = $data;
-
-      return response()->json($res);
-
+        return redirect("/admin/cars")->with("message","تم تعديل السيارة بنجاح");
+        
     }
 
-    public function ToggleActivePlayer($type,$id){
-
-      if($type == "Active"){
-
-        $updateToggle = SiteData::where('Name',"CountUnActive")->increment('Value', 1);
-
-        $update = Player::where("id",$id)->update([
-               "Status" => "UnActive" 
-        ]);
-        session()->flash("message","تم تعطيل اللاعب بنجاح");
-      }  else {
-
-        $update = Player::where("id",$id)->update([
-            "Status" => "Active" 
-         ]);
-         session()->flash("message","تم تفعيل اللاعب بنجاح");
-      }
-      return redirect('/admin/players');
-
-    }
 
     public function destroy($id)
     {
-        return 'Page delete Player id With: ' . $id;
+
+        Car::where("id",$id)->delete();
+
+        session()->flash("message","تم حذف السيارة بنجاح");
+        return redirect("/admin/cars");
     }
 }

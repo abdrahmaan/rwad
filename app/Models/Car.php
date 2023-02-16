@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Skill extends Model
+class Car extends Model
 {
     use HasFactory;
 
-    protected $table = 'skills';
+    protected $table = 'cars';
 
     protected $fillable = [
-     "SkillType", 
-     "PlayerCode",
-     "PlayerName",
-    "Skills"
+        "Tabashery",
+        "PlateNumber",
+        "CarType",
+        "SCounter",
+        "BranchName",
     ];
-  
 }

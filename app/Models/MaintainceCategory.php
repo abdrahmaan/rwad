@@ -5,18 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class MaintainceCategory extends Model
 {
     use HasFactory;
-    protected $table = 'groups';
+    protected $table = "maintaince_categories";
 
     protected $fillable = [
-    'GroupName',
-    'Day',
-    'Time',
-    'BranchName'
-     ];
-     
-
-};
-
+       "CategName",
+       "GroupName",
+    ];
+}

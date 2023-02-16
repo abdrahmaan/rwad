@@ -39,7 +39,7 @@
           </div>
           <div class="data-text col-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">الفرع</label>
-            <select class="w-100 text-center form-control mx-auto" name="GroupName" name="" id="">
+            <select class="w-100 text-center form-control mx-auto" name="BranchName" name="" id="">
               @isset($branches)
                 @foreach ($branches as $branch)
   
@@ -78,18 +78,31 @@
   }
 
 
+  // Save Data Shortcut
 document.addEventListener('keydown', (e) => {
 
- 
-  if (event.ctrlKey && event.keyCode == 32) {
-    
+  let form = document.querySelector("form");
 
-    
-    console.log("yes");
-    
+  let newInputs = document.querySelectorAll("input");
+
+
+  // 48 = 0 key
+  // 32 = space key
+
+  if(e.ctrlKey && e.keyCode == 32) {
+
+    form.submit();
+
   }
 
-})
+
+  if(e.keyCode == 13){
+    e.preventDefault();
+  }
+
+
+
+});
 
 </script>
 
