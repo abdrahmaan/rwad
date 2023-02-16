@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePayoutsTable extends Migration
+class CreateCarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreatePayoutsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payouts', function (Blueprint $table) {
+        Schema::create('cars', function (Blueprint $table) {
             $table->id();
-            $table->string('Desc');
-            $table->string('Type');
-            $table->string('Amount');
-            $table->string('Branch');
-            $table->string('User');
+            $table->integer("Tabashery");
+            $table->string("PlateNumber");
+            $table->string("CarType");
+            $table->integer("SCounter");
+            $table->string("BranchName");
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreatePayoutsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payouts');
+        Schema::dropIfExists('cars');
     }
 }

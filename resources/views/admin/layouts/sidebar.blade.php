@@ -144,7 +144,7 @@
                     <i class="bi bi-gear-wide-connected"></i>
                   </button>
                   <ul class="dropdown-menu w-100 position-relative text-end rounded-0" style="background-color: #101733;">
-                    <li><a class="dropdown-item text-light" href="/admin/newuser">
+                    <li><a class="dropdown-item text-light" href="/admin/branches/create">
                         الفروع
                         <i class="bi bi-collection-fill mx-1"></i>
                       </a></li>

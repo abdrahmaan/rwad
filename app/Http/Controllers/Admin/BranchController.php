@@ -53,9 +53,8 @@ class BranchController extends Controller
        $insert =  Branch::create([
             'BranchName'=> $request->BranchName
         ]);
-
+        
         $insert->save();
-
         return redirect('/admin/branches/create')->with("message","تم إضافة الفرع بنجاح");
 
 

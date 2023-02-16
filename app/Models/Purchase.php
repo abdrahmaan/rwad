@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Payout extends Model
+class Purchase extends Model
 {
     use HasFactory;
 
-    protected $table = 'payouts';
+    protected $table = "purchases";
 
     protected $fillable = [
-        'Desc',
-        'Type',
-        'Amount',
-        'Branch',
-        'User',
+       "ReceiptNum",
+       "CategName",
+       "GroupName",
+       "Count",
+    "AmountPeice",
+       "op",
     ];
-
 }

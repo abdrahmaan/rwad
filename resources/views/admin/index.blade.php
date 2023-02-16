@@ -90,148 +90,7 @@
                     </div>
                 </div>
             </div>
-            
-   
-            <div id="OldStyle" class="d-none">
-                <section class="one-data mx-2 my-3 py-3 bg-warning col-lg-3 col-12 d-flex flex-column justify-content-center align-items-center" style="max-height: 150px">
-                    <section class="d-flex align-items-center">
-                        <h2 class="text-light fs-5 mb-2 mx-2">
-                             الإشتراكات\اليوم
-    
-                         </h2>
-                         <i class="bi text-light bi-coin fs-6"></i>
-                    </section>
-                     <h2 class="text-light" dir="rtl">{{$data["PaymentTotalToday"]}} جنية</h2>
-                 </section>
-                <section class="one-data mx-2 my-3 py-3 bg-warning col-lg-3 col-12 d-flex flex-column justify-content-center align-items-center" style="max-height: 150px">
-                    <section class="d-flex align-items-center">
-                        <h2 class="text-light fs-5 mb-2 mx-2">
-                             الإشتراكات\اليوم
-    
-                         </h2>
-                         <i class="bi text-light bi-coin fs-6"></i>
-                    </section>
-                     <h2 class="text-light" dir="rtl">{{$data["PaymentTotalToday"]}} جنية</h2>
-                 </section>
-             
-                <section class="one-data mx-2 my-3 py-3 bg-warning col-lg-3 col-12 d-flex flex-column justify-content-center align-items-center" style="max-height: 150px">
-                    <section class="d-flex align-items-center">
-                        <h2 class="text-light fs-5 mb-2 mx-2">
-                             الإشتراكات\الشهر
-                         </h2>
-                         <i class="bi text-light bi-coin fs-6"></i>
-                    </section>
-                     <h2 class="text-light" dir="rtl">{{$data["PaymentTotalMonth"]}} جنية</h2>
-                 </section>
-             
-                    <section class="one-data mx-2 my-3 py-3 bg-warning col-lg-3 col-12 d-flex flex-column justify-content-center align-items-center" style="max-height: 150px">
-                       <section class="d-flex align-items-center">
-                           <h2 class="text-light fs-6 mb-2 mx-2">
-                               عدد الإشتراكات\الشهر
-                            </h2>
-                            <i class="bi text-light bi-coin fs-6"></i>
-                       </section>
-                        <h2 class="text-light ">{{$data["PaymentCountMonth"]}}</h2>
-                    </section>
-                
-                <section class="one-data mx-2 my-3 py-3 bg-warning col-lg-3 col-12 d-flex flex-column justify-content-center align-items-center" style="max-height: 150px">
-                    <section class="d-flex align-items-center">
-                        <h2 class="text-light fs-5 mb-2 mx-2">
-                             المصروفات\اليوم
-    
-                         </h2>
-                         <i class="bi text-light bi-coin fs-6"></i>
-                    </section>
-                     <h2 class="text-light" dir="rtl">{{$data["PayoutTotalToday"]}} جنية</h2>
-                 </section>
-             
-                <section class="one-data mx-2 my-3 py-3 bg-warning col-lg-3 col-12 d-flex flex-column justify-content-center align-items-center" style="max-height: 150px">
-                    <section class="d-flex align-items-center">
-                        <h2 class="text-light fs-5 mb-2 mx-2">
-                             المصروفات\الشهر
-                         </h2>
-                         <i class="bi text-light bi-coin fs-6"></i>
-                    </section>
-                     <h2 class="text-light" dir="rtl">{{$data["PayoutTotalMonth"]}} جنية</h2>
-                 </section>
-             
-                    <section class="one-data mx-2 my-3 py-3 bg-warning col-lg-3 col-12 d-flex flex-column justify-content-center align-items-center" style="max-height: 150px">
-                       <section class="d-flex align-items-center">
-                           <h2 class="text-light fs-6 mb-2 mx-2">
-                               عدد المصروفات\الشهر
-                            </h2>
-                            <i class="bi text-light bi-coin fs-6"></i>
-                       </section>
-                        <h2 class="text-light ">{{$data["PayoutCountMonth"]}}</h2>
-                    </section>
-                
-    
-                    <section class="one-data mx-2 my-3 py-3 bg-warning col-lg-3 col-12 d-flex flex-column justify-content-center align-items-center" style="max-height: 150px">
-                       <section class="d-flex align-items-center">
-                           <h2 class="text-light fs-5 mb-2 mx-2">
-                                 عدد اللاعبين
-                            </h2>
-                            <i class="bi text-light bi-person-lines-fill fs-6"></i>
-                       </section>
-                        <h2 class="text-light ">{{$data["TotalPlayers"]}}</h2>
-                    </section>
-    
-                    <section class="one-data mx-2 my-3 py-3 bg-warning col-lg-3 col-12 d-flex flex-column justify-content-center align-items-center" style="max-height: 150px">
-                       <section class="d-flex align-items-center">
-                           <h2 class="text-light fs-5 mb-2 mx-2">
-                                اللاعبين\مفعل
-                            </h2>
-                            <i class="bi text-light bi-person-lines-fill fs-6"></i>
-                       </section>
-                        <h2 class="text-light ">{{$data["TotalPlayersActive"]}}</h2>
-                    </section>
-                
-    
-                    <section class="one-data mx-2 my-3 py-3 bg-warning col-lg-3 col-12 d-flex flex-column justify-content-center align-items-center" style="max-height: 150px">
-                       <section class="d-flex align-items-center">
-                           <h2 class="text-light fs-5 mb-2 mx-2">
-                                اللاعبين\غير مفعل
-                            </h2>
-                            <i class="bi text-light bi-person-lines-fill fs-6"></i>
-                       </section>
-                        <h2 class="text-light ">{{$data["TotalPlayersUnActive"]}}</h2>
-                    </section>
-                    
-                    <section class="one-data mx-2 my-3 py-3 bg-warning col-lg-3 col-12 d-flex flex-column justify-content-center align-items-center" style="max-height: 150px">
-                       <section class="d-flex align-items-center">
-                           <h2 class="text-light fs-5 mb-2 mx-2">
-                                اللاعبين\غير مفعل  - الشهر الحالى
-                            </h2>
-                            <i class="bi text-light bi-person-lines-fill fs-6"></i>
-                       </section>
-                        <h2 class="text-light ">{{$data["TotalPlayersUnActiveMonth"]}}</h2>
-                    </section>
-    
-                    <section class="one-data mx-2 my-3 py-3 bg-warning col-lg-3 col-12 d-flex flex-column justify-content-center align-items-center" style="max-height: 150px">
-                       <section class="d-flex align-items-center">
-                           <h2 class="text-light fs-5 mb-2 mx-2">
-                                المجموعات
-                            </h2>
-                            <i class="bi text-light bi-collection-fill fs-6"></i>
-                       </section>
-                        <h2 class="text-light ">{{$data["GroupsCount"]}}</h2>
-                    </section>
-                    <section class="one-data mx-2 my-3 py-3 bg-warning col-lg-3 col-12 d-flex flex-column justify-content-center align-items-center" style="max-height: 150px">
-                       <section class="d-flex align-items-center">
-                           <h2 class="text-light fs-5 mb-2 mx-2">
-                                الفروع
-                            </h2>
-                            <i class="bi text-light bi-collection-fill  fs-6"></i>
-                       </section>
-                        <h2 class="text-light ">{{$data["BranchesCount"]}}</h2>
-                    </section>
-                  
-                   
-    
-               </section>
-    
-            </div>
-            
+
 
 
            <style>
@@ -304,8 +163,8 @@
             datasets: [{
                 label: 'المجموع',
                 data: [
-                    {{$data["PaymentTotalToday"]}},
-                    {{$data["PaymentTotalMonth"]}},
+                    5000,
+                    5000,
                 ],
                 backgroundColor: '#006ba1',
                 borderWidth: 1
@@ -322,8 +181,8 @@
             datasets: [{
                 label: 'المجموع',
                 data: [
-                    {{$data["PayoutTotalToday"]}},
-                    {{$data["PayoutTotalMonth"]}},
+                    2000,
+                   4000,
                 ],
                 backgroundColor: '#006ba1',
                 borderWidth: 1
@@ -331,23 +190,6 @@
             },
             });
 
-        let chartGroup = new Chart(eleGroup,
-            {
-                type: 'bar',
-            data: {
-            labels: ["المجموعات", "الفروع","لاعب - معطل شهرياً"],
-            datasets: [{
-                label: 'المجموع',
-                data: [
-                    {{$data["GroupsCount"]}},
-                    {{$data["BranchesCount"]}},
-                    {{$data["TotalPlayersUnActiveMonth"]}},
-                ],
-                backgroundColor: '#00086a',
-                borderWidth: 1
-            }]
-            },
-            });
             
         let chartPurchase = new Chart(elePurchase,
             {
@@ -357,9 +199,8 @@
             datasets: [{
                 label: 'المجموع',
                 data: [
-                    {{$data["GroupsCount"]}},
-                    {{$data["BranchesCount"]}},
-                    {{$data["TotalPlayersUnActiveMonth"]}},
+                    7000,
+                    5000,
                 ],
                 backgroundColor: '#006ba1',
                 borderWidth: 1

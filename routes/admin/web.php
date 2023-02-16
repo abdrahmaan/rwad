@@ -5,8 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CarController;
 
-use App\Http\Controllers\Admin\AttendanceController;
-use App\Http\Controllers\Admin\AttendanceCaptinController;
 
 
 /*
@@ -33,6 +31,7 @@ Route::prefix("admin")->middleware('auth')->group(function (){
 
         // Cars
         Route::resource('cars', 'App\Http\Controllers\Admin\CarController');
+        Route::post('/search/cars', 'App\Http\Controllers\Admin\CarController@search');
 
     });
 
@@ -58,10 +57,14 @@ Route::prefix("admin")->middleware('auth')->group(function (){
         // Purchase
         Route::resource('purchases', 'App\Http\Controllers\Admin\PurchaceController');
     });
-
-
+    
+    
     // Admin Only Routes Access
     Route::middleware('just-admin')->group(function(){
+
+
+        // Branche
+        Route::resource('branches', 'App\Http\Controllers\Admin\BranchController');
 
         // New User
         Route::get("/newuser", [AuthController::class, "NewUserPage"]);
@@ -72,7 +75,6 @@ Route::prefix("admin")->middleware('auth')->group(function (){
    
     //Logout
     Route::get("/logout", [AuthController::class, "LogOutLogic"]);
-    Route::get("/players", [CarController::class,"index"]);
 
 });
 
