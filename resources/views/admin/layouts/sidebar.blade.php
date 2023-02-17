@@ -46,7 +46,7 @@
                         تسجيل حركة يومية
                         <i class="bi bi-file-earmark-plus mx-1"></i>
                       </a></li>
-                    <li><a class="dropdown-item text-light" href="{{route('cars.index')}}">
+                    <li><a class="dropdown-item text-light" href="{{route('movments.index')}}">
                         بحث فى الحركات اليومية
                         <i class="bi bi-pie-chart-fill mx-1"></i>
                       </a></li>
@@ -63,7 +63,7 @@
                         تسجيل سولار
                         <i class="bi bi-fuel-pump mx-1"></i>
                       </a></li>
-                    <li><a class="dropdown-item text-light" href="{{route('cars.index')}}">
+                    <li><a class="dropdown-item text-light" href="{{route('sollars.index')}}">
                         بحث فى تسجيلات السولار
                         <i class="bi bi-pie-chart-fill mx-1"></i>
                       </a></li>
@@ -194,7 +194,7 @@
                           تسجيل حركة يومية
                           <i class="bi bi-file-earmark-plus mx-1"></i>
                         </a></li>
-                      <li><a class="dropdown-item text-light" href="{{route('cars.index')}}">
+                      <li><a class="dropdown-item text-light" href="{{route('movments.index')}}">
                           بحث فى الحركات اليومية
                           <i class="bi bi-pie-chart-fill mx-1"></i>
                         </a></li>
@@ -211,7 +211,7 @@
                           تسجيل سولار
                           <i class="bi bi-fuel-pump mx-1"></i>
                         </a></li>
-                      <li><a class="dropdown-item text-light" href="{{route('cars.index')}}">
+                      <li><a class="dropdown-item text-light" href="{{route('sollars.index')}}">
                           بحث فى تسجيلات السولار
                           <i class="bi bi-pie-chart-fill mx-1"></i>
                         </a></li>
@@ -229,7 +229,7 @@
                           <i class="bi bi-gear-wide-connected mx-1"></i>
                         </a></li>
                       <li><a class="dropdown-item text-light" href="{{route('cars.index')}}">
-                          بحث فى صيانة السيارات
+                          بحث فى صيانة السيارات 
                           <i class="bi bi-pie-chart-fill mx-1"></i>
                         </a></li>
                     </ul>

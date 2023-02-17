@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title',"تسجيل صنف فى المحزن")
+@section('title',"تسجيل قيد فى المخزن")
 @section('icon',"bi bi-file-earmark-plus mx-1")
     
 

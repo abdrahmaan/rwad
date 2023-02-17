@@ -17,7 +17,7 @@
         <div class="data-info row p-0 m-0 w-100 flex-row-reverse justify-content-center align-items-center">
           <div class="data-text col-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">طباشيرى</label>
-            <input id="name" class="form-control w-100 text-center mx-auto" name="Tabashery" type="text" value="{{$Car->Tabashery}}" placeholder="طباشيرى">
+            <input id="name" readonly class="form-control w-100 text-center mx-auto" name="Tabashery" type="text" value="{{$Car->Tabashery}}" placeholder="طباشيرى">
           </div>
           <div class="data-text col-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">رقم اللوحة</label>
@@ -25,13 +25,8 @@
           </div>
           <div class="data-text col-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">نوع السيارة</label>
-            <select class=" w-100 text-center form-control mx-auto" name="CarType" value="{{$Car->CarType}}" id="">
-              <option value="ميكروباص">ميكروباص</option>
-              <option value="نقل أموال">نقل أموال</option>
-              <option value="ملاكى">ملاكى</option>
-              <option value="نصف نقل">نصف نقل</option>
-              <option value="موتوسيكل">موتوسيكل</option>
-          </select>
+            <input class="form-control w-100 text-center mx-auto" readonly name="CarType" value="{{$Car->CarType}}" type="text" placeholder="أ ل ف - 678">
+            
           </div>
           <div class="data-text col-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">عداد البداية</label>
@@ -39,15 +34,8 @@
           </div>
           <div class="data-text col-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">الفرع</label>
-            <select class="w-100 text-center form-control mx-auto" name="BranchName" name="" id="">
-              @isset($branches)
-                @foreach ($branches as $branch)
-  
-                  <option value="{{$branch->BranchName}}">{{$branch->BranchName}}</option>
-                    
-                @endforeach
-              @endisset
-          </select>
+            <input class="form-control w-100 text-center mx-auto" name="BranchName" value="{{$Car->BranchName}}" type="text" placeholder="Ex. 567666">
+           
           </div>
           <div class="col-7">
 

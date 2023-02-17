@@ -46,7 +46,8 @@
 </form>
 
 
-<table class="table table-dark w-75 mx-auto table-bordered align-middle text-center">
+<div class="container py-4">
+  <table class="table table-dark w-75 mx-auto table-bordered align-middle text-center py-5">
     <thead>
       <tr>
           <th scope="col">التغييرات</th>
@@ -71,7 +72,8 @@
             </tr>
         @endforeach
     </tbody>
-  </table>
+</table>  
+</div>
 @endsection
 
 @section('title', "إضافة حساب جديد")

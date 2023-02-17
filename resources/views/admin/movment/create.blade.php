@@ -22,16 +22,16 @@
           </div>
           <div class="data-text col-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">رقم اللوحة</label>
-            <input class="form-control w-100 text-center mx-auto" name="PlateNumber" value="{{old('PlateNumber')}}" type="text" placeholder="">
+            <input class="form-control w-100 text-center mx-auto" readonly name="PlateNumber" value="{{old('PlateNumber')}}" type="text" placeholder="">
           </div>
           <div class="data-text col-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">نوع السيارة</label>
-            <input class="form-control w-100 text-center mx-auto" name="CarType" value="{{old('PlateNumber')}}" type="text" placeholder="">
+            <input class="form-control w-100 text-center mx-auto" readonly name="CarType" value="{{old('PlateNumber')}}" type="text" placeholder="">
           </div>
 
           <div class="data-text col-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">عداد الخروج</label>
-            <input class="form-control w-100 text-center mx-auto" name="StartCounter" value="{{old('StartCounter')}}" type="number" placeholder="">
+            <input class="form-control w-100 text-center mx-auto" readonly name="StartCounter" value="{{old('StartCounter')}}" type="number" placeholder="">
           </div>
           <div class="data-text col-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">عداد الدخول</label>
@@ -39,11 +39,11 @@
           </div>
           <div class="data-text col-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">الفرق</label>
-            <input class="form-control w-100 text-center mx-auto" name="Diff" value="{{old('Diff')}}" type="number" placeholder="">
+            <input class="form-control w-100 text-center mx-auto" readonly name="Diff" value="{{old('Diff')}}" type="number" placeholder="">
           </div>
           <div class="data-text col-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">الفرع</label>
-            <input class="form-control w-100 text-center mx-auto" name="BranchName" value="{{old('BranchName')}}" type="text" placeholder="">
+            <input class="form-control w-100 text-center mx-auto" readonly name="BranchName" value="{{old('BranchName')}}" type="text" placeholder="">
           </div>
 
           <div class="databtn col-9">
@@ -69,10 +69,16 @@
 <script>
 
 
+  fetch("http://alrwad.me/api/admin/cars")
+  .then(res => res.json())
+  .then(res => {
+      window.localStorage.setItem("cars",JSON.stringify(res));
+  })
+
 let fakeData = [
   {
-    PlateName: "أ ل ف - 456",
-    Tabashery: "45",
+    PlateNumber: "أ ل ف - 456",
+    Tabashery: 45,
     CarType: "نقل اموال",
     SCounter: "567888",
     BranchName: "القاهرة",
@@ -110,34 +116,33 @@ function Events(){
   // Click Enter On Tabashery
   inputs[2].addEventListener("keydown",(e)=>{
 
-    let form = document.querySelector("form");
-    form.addEventListener("submit",(e)=>{
-      e.preventDefault();
-    });
-
 
     if(e.ctrlKey && e.keyCode == 13){
 
 
     let newInputs = document.querySelectorAll("input");
+    let CarsData = JSON.parse(window.localStorage.getItem("cars"));
+    let isFound = false;
 
-    let isFound =false;
 
-    fakeData.forEach(car => {
+    for(let i = 0; i < CarsData.length; i++) {
+      
+      if(CarsData[i].Tabashery == Number(e.target.value)){
 
-      if(car.Tabashery == e.target.value){
-        newInputs[3].value = car.PlateName;
-        newInputs[4].value = car.CarType;
-        newInputs[5].value = car.SCounter;
-        newInputs[8].value = car.BranchName;
-        newInputs[6].focus();
-        isFound = true;
-        return;
-      } else {
-        isFound = false;
+          newInputs[3].value = CarsData[i].PlateNumber;
+          newInputs[4].value = CarsData[i].CarType;
+          newInputs[5].value = CarsData[i].SCounter;
+          newInputs[8].value = CarsData[i].BranchName;
+          newInputs[6].focus();
+          isFound = true;
+          break;
+
+          } else {
+
+          isFound = false;
       }
+    }
 
-    });
 
     if(isFound == false){
         

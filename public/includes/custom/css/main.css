@@ -1,9 +1,13 @@
 *{
     z-index: 100;
-    user-select: none;
+    /* user-select: none; */
     margin: 0px;
     padding: 0px;
 
+}
+
+table{
+    user-select: all !important;
 }
 
 

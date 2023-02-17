@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Models\Branch;
 
-use App\Models\Player;
-use App\Models\Skill;
 use Illuminate\Http\Request;
 
 class SollarController extends Controller
@@ -16,7 +15,9 @@ class SollarController extends Controller
      */
     public function index()
     {
-       return "hello";
+
+        $Bracnhes = Branch::all();
+        return view('admin.sollar.index', ["Branches" => $Bracnhes] );
     }
 
     /**
@@ -26,11 +27,9 @@ class SollarController extends Controller
      */
     public function create(Request $request)
     {
-        $id = $request->id;
 
-        $Player = Player::select('id','PlayerName')->where('id',$id)->get()->first();
 
-        return view('admin.sollar.create', ["Player"=> $Player] );
+        return view('admin.sollar.create' );
 
     }
     public function new(Request $request)
