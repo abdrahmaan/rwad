@@ -49,6 +49,13 @@
                     </select>
                 </div>
 
+                <div class="data-name col-12   m-4 d-flex justify-content-center align-items-center">
+                   <div class="bg-success p-1 rounded d-flex">
+                    <h6 class="text-light   text-center mx-2">إستخراج البيانات إكسيل</h6>
+                    <input type="checkbox" name="Export" placeholder="طباشيري أو رقم اللوحة" class="">
+                   </div>
+                </div>
+
 
                 <div class="data-btn col-9 col-lg-7">
                     <button id="Search" class="btn btn-danger text-light w-50 d-block mx-auto my-4">بحث</button>
@@ -149,6 +156,7 @@
 
     <script>
           let inputs = document.querySelectorAll("input");
+          let btn = document.querySelectorAll('button#Search')[0];
           let form = document.querySelector("form");
           inputs[1].focus();
         let date = new Date().toISOString().split("T")[0];
@@ -160,6 +168,18 @@
               if(e.ctrlKey && e.keyCode == 13){
                 form.submit();
               }
-          })
-        </script>          
+          });
+
+          inputs[4].addEventListener("click",(e)=>{
+              if(e.target.checked == true){
+                btn.innerText = "إستخراج"
+              } else {
+                btn.innerText = "بحث"
+
+              }
+          });
+
+
+
+    </script>          
 @endsection
