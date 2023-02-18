@@ -6,6 +6,8 @@ use App\Models\Branch;
 use App\Models\Car;
 use App\Models\CarMovment;
 use Illuminate\Http\Request;
+use App\Exports\ExportMovment;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -86,8 +88,15 @@ class MovmentController extends Controller
 
             }
         }
-        // dd($Data);
-        return view("admin.movment.index",["Branches"=>$Branches, "Movments" => $Data]);
+        if(isset($request->Export)){
+
+            session()->put('data',$Data);
+            return Excel::download(new ExportMovment, "تحركات عربية $Tabashery من $StartDate - $EndDate.xlsx");
+
+        } else {
+            
+            return view("admin.movment.index",["Branches"=>$Branches, "Movments" => $Data]);
+        }
     }
 
     /**

@@ -61,6 +61,7 @@ Route::prefix("admin")->middleware('auth')->group(function (){
         Route::resource('purchases', 'App\Http\Controllers\Admin\PurchaceController');
     });
     
+    Route::get('export', 'App\Http\Controllers\Admin\CarController@export');
     
     // Admin Only Routes Access
     Route::middleware('just-admin')->group(function(){

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Exports\CarExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 use App\Models\Branch;
 use App\Models\Car;
 
-use Illuminate\Http\Request;
 
 
 class CarController extends Controller
@@ -80,7 +83,6 @@ class CarController extends Controller
            }
 
         }
-        
         return view('admin.car.index',["Branches" => $Branches, "Cars"=> $Data]);
 
     }
@@ -92,6 +94,13 @@ class CarController extends Controller
 
     }
     
+
+    public function export(){
+
+       return Excel::download(new CarExport,"new.xlsx");
+    }
+
+
     public function create()
     {
         $BranchesName = Branch::all();
