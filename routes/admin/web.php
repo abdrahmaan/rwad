@@ -69,6 +69,9 @@ Route::prefix("admin")->middleware('auth')->group(function (){
         // Branche
         Route::resource('branches', 'App\Http\Controllers\Admin\BranchController');
 
+        // Maintaince Category
+        Route::resource('maintaincecateg', 'App\Http\Controllers\Admin\MaintainceCategController');
+
         // New User
         Route::get("/newuser", [AuthController::class, "NewUserPage"]);
         Route::post("/newuser", [AuthController::class, "NewUserLogic"]);
