@@ -32,6 +32,7 @@ Route::prefix("admin")->middleware('auth')->group(function (){
         // Cars
         Route::resource('cars', 'App\Http\Controllers\Admin\CarController');
         Route::post('/search/cars', 'App\Http\Controllers\Admin\CarController@search');
+        Route::get('/search/cars', 'App\Http\Controllers\Admin\CarController@index');
 
     });
 
@@ -39,6 +40,8 @@ Route::prefix("admin")->middleware('auth')->group(function (){
 
         // Movments
         Route::resource('movments', 'App\Http\Controllers\Admin\MovmentController');
+        Route::post('/search/movments', 'App\Http\Controllers\Admin\MovmentController@search');
+        Route::get('/search/movments', 'App\Http\Controllers\Admin\MovmentController@index');
         // Sollar
         Route::resource('sollars', 'App\Http\Controllers\Admin\SollarController');
         // Maintaince
@@ -65,6 +68,9 @@ Route::prefix("admin")->middleware('auth')->group(function (){
 
         // Branche
         Route::resource('branches', 'App\Http\Controllers\Admin\BranchController');
+
+        // Maintaince Category
+        Route::resource('maintaincecateg', 'App\Http\Controllers\Admin\MaintainceCategController');
 
         // New User
         Route::get("/newuser", [AuthController::class, "NewUserPage"]);

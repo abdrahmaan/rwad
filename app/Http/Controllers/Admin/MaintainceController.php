@@ -31,6 +31,8 @@ class MaintainceController extends Controller
 
         $branchs = Branch::all();
 
+        // session()->flash("error","لا يوجد قطع غيار فى المخزن من الصنف المحدد");
+
         return view('admin.maintaince.create' , ["Branches"=>$branchs]);
         
     }

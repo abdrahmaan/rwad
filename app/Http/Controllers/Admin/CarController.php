@@ -25,6 +25,7 @@ class CarController extends Controller
     }
     
     public function search(Request $request){
+        
 
         $Tabashery = $request->Tabashery;
         $CarType = $request->CarType;
@@ -84,7 +85,12 @@ class CarController extends Controller
 
     }
 
+    public function getAllCars(){
 
+        $Cars = Car::all();
+        return response()->json($Cars);
+
+    }
     
     public function create()
     {
