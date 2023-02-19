@@ -69,7 +69,7 @@
 <script>
 
 
-  fetch("http://alrwad.me/api/admin/cars")
+  fetch("http://alrwad.abdelrahmaan.com/api/admin/cars")
   .then(res => res.json())
   .then(res => {
       window.localStorage.setItem("cars",JSON.stringify(res));
