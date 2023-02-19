@@ -228,7 +228,7 @@ return [
         | Drivers: memory|illuminate|batch
         |
         */
-        'driver'     => 'illuminate',
+        'driver'   => 'illuminate',
 
         /*
         |--------------------------------------------------------------------------
@@ -240,7 +240,7 @@ return [
         | Here you can tweak the memory limit to your liking.
         |
         */
-        'batch'     => [
+        'batch'  => [
             'memory_limit' => 60000,
         ],
 

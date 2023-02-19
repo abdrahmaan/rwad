@@ -54,6 +54,10 @@ class AuthController extends Controller
                     return redirect("/admin/movments/create");
                 break;
 
+                case 'مدير الحركة':
+                    return redirect("/admin/maintainces/create");
+                break;
+
                 case 'مسؤول مخزن':
                     return redirect("/admin/inventory/create");
                 break;

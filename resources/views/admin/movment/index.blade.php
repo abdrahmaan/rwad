@@ -67,16 +67,22 @@
         </div>
 
         @isset($Movments)
+
         @if (count($Movments) > 0)
 
+
+        <div class="d-none">
+            
             {{$counter = 0}}
-                    
+
             @foreach ($Movments as $Movment)
 
-                {{$counter += $Movment->Diff}}
+            {{$counter += $Movment->Diff}}
 
             @endforeach
-            
+        </div>
+
+        </div>
             <div class="container py-4 d-flex flex-column">
                 <div class="card w-25 align-self-end my-3 border-0" style="" dir="rtl">
                     <div class="card-header border-0 bg-dark text-light">
