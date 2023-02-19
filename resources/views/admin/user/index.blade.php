@@ -30,6 +30,7 @@
             <option value="مدخل بيانات">مدخل بيانات</option>
             <option value="مسؤول مخزن">مسؤول مخزن</option>
             <option value="مشتريات">مشتريات</option>
+            <option value="مدير الحركة">مدير الحركة</option>
           </select>
         </div>
   

@@ -228,6 +228,35 @@
                           تسجيل صيانة جديدة
                           <i class="bi bi-gear-wide-connected mx-1"></i>
                         </a></li>
+                      <li><a class="dropdown-item text-light" href="{{route('maintainces.index')}}">
+                          بحث فى صيانة السيارات 
+                          <i class="bi bi-pie-chart-fill mx-1"></i>
+                        </a></li>
+                    </ul>
+                </div>
+                      <!-- تسجيل الخروج -->
+                      <a class="dropdown-item text-light text-end pe-3 py-2" href="/admin/logout">
+                        تسجيل الخروج
+                        <i class="bi bi-box-arrow-in-left mx-1"></i>
+                      </a>
+
+                    </div>
+                    </div>
+                    <!-- Sidebar End -->
+            @endif 
+            {{-- مدير الحركة --}}
+            @if (session()->get('user-data')->Role == "مدير الحركة")
+                <!-- الصيانة -->
+                <div class="dropdown w-100 mb-2">
+                    <button class="btn text-light dropdown-toggle text-end w-100 pe-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    إدارة الصيانة
+                      <i class="bi bi-pin-map-fill"></i>
+                    </button>
+                    <ul class="dropdown-menu  w-100 position-relative text-end rounded-0" style="background-color: #101733;">
+                      <li><a class="dropdown-item text-light" href="{{route('maintainces.create')}}">
+                          تسجيل صيانة جديدة
+                          <i class="bi bi-gear-wide-connected mx-1"></i>
+                        </a></li>
                       <li><a class="dropdown-item text-light" href="{{route('cars.index')}}">
                           بحث فى صيانة السيارات 
                           <i class="bi bi-pie-chart-fill mx-1"></i>
@@ -278,7 +307,7 @@
                           تسجيل حركة يومية
                           <i class="bi bi-file-earmark-plus mx-1"></i>
                         </a></li>
-                      <li><a class="dropdown-item text-light" href="{{route('cars.index')}}">
+                      <li><a class="dropdown-item text-light" href="{{route('movments.index')}}">
                           بحث فى الحركات اليومية
                           <i class="bi bi-pie-chart-fill mx-1"></i>
                         </a></li>
@@ -295,7 +324,7 @@
                           تسجيل سولار
                           <i class="bi bi-fuel-pump mx-1"></i>
                         </a></li>
-                      <li><a class="dropdown-item text-light" href="{{route('cars.index')}}">
+                      <li><a class="dropdown-item text-light" href="{{route('sollars.index')}}">
                           بحث فى تسجيلات السولار
                           <i class="bi bi-pie-chart-fill mx-1"></i>
                         </a></li>

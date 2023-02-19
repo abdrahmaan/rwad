@@ -25,6 +25,7 @@ Route::prefix("admin")->middleware('auth')->group(function (){
 
     // DataEntry Manger Routes Access
     Route::middleware('data-entry-manager')->group(function(){
+
         
         Route::get('/', 'App\Http\Controllers\Admin\DashboardController@index')->name('dashboard.index');
         Route::get('dashboard', 'App\Http\Controllers\Admin\DashboardController@index')->name('dashboard.index');
@@ -55,19 +56,17 @@ Route::prefix("admin")->middleware('auth')->group(function (){
 
     });
 
-
     Route::middleware('purchase-user')->group(function(){
         // Purchase
         Route::resource('purchases', 'App\Http\Controllers\Admin\PurchaceController');
     });
     
-    Route::get('export', 'App\Http\Controllers\Admin\CarController@export');
     
     // Admin Only Routes Access
     Route::middleware('just-admin')->group(function(){
 
 
-        // Branche
+        // Branches
         Route::resource('branches', 'App\Http\Controllers\Admin\BranchController');
 
         // Maintaince Category
@@ -93,6 +92,7 @@ Route::middleware('user')->group(function () {
     Route::get("/login", [AuthController::class, "LoginPage"]);
     Route::post("/login", [AuthController::class, "LoginLogic"]);
     Route::redirect("/","/login");
+
 
 
 });
