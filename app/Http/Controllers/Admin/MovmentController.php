@@ -30,6 +30,13 @@ class MovmentController extends Controller
     
     public function search(Request $request){
 
+        $request->validate([
+            "StartDate"=> "required",
+            "EndDate"=> "required"
+        ],[
+            "StartDate.required"=>"تاريخ البداية مطلوب",
+            "EndDate.required"=>"تاريخ النهارية مطلوب"
+        ]);
         
         $Tabashery = $request->Tabashery;
         $CarType = $request->CarType;
@@ -88,6 +95,7 @@ class MovmentController extends Controller
 
             }
         }
+
         if(isset($request->Export)){
 
             session()->put('data',$Data);
@@ -96,6 +104,7 @@ class MovmentController extends Controller
         } else {
             
             return view("admin.movment.index",["Branches"=>$Branches, "Movments" => $Data]);
+            
         }
     }
 
@@ -189,12 +198,28 @@ class MovmentController extends Controller
     {
 
         $Movment = CarMovment::where("id",$id)->get()->first();
+        
         $Branches = Branch::all();
 
-        $passData = ["Branches"=>$Branches, "Movment" => $Movment];
+        $passData = ["Branches"=>$Branches, "Movment" => $Movment]; 
+
+        $MovmentEnd = $Movment->EndCounter;
+        $BiggestMovmentEndForCar = CarMovment::where("Tabashery", $Movment->Tabashery)->max("EndCounter");
+
+        if($MovmentEnd == $BiggestMovmentEndForCar){
+
+            return view('admin.movment.edit', $passData);
+            
+        } else {
+            
+            session()->flash("error","لا يمكن التعديل غير على أخر عداد مسجل للسيارة فقط");
+            return redirect("/admin/movments");
+
+            // return view('admin.movment.index', $passData);
+        }
+  
         
         
-        return view('admin.movment.edit', $passData);
     }
 
     /**
@@ -229,12 +254,7 @@ class MovmentController extends Controller
             'Diff.min'=>'حقل فرق العداد يجب أن يكون عدد صحيح',
         ]);
 
-        $MovmentEndCounterPrev = $request->EndCounterPrev;
         $MovmentEndCounter = $request->EndCounter;
-
-        $BiggestMovmentEnd = CarMovment::where("Tabashery",$request->Tabashery)->max("EndCounter");
-
-        if($MovmentEndCounterPrev == $BiggestMovmentEnd){
 
             Car::where("Tabashery",$request->Tabashery)->update([
                 "SCounter" => $MovmentEndCounter
@@ -248,14 +268,7 @@ class MovmentController extends Controller
             session()->flash("message","تم تعديل الحركة بنجاح");
             return redirect("/admin/movments");
             
-        } else {
-            
-            session()->flash("error","لا يمكن التعديل غير على أخر عداد مسجل للسيارة فقط");
-            
-            return redirect("/admin/movments");
-
-
-        }
+    
     }
 
     /**
