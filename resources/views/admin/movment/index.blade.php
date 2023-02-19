@@ -19,11 +19,11 @@
                 <div class="col-10 d-flex justify-content-center" dir="rtl">
                 <div class="data-name col-3 m-4">
                     <h3 class="text-light text-center mb-3">تاريخ البداية</h3>
-                    <input type="date" name="StartDate" placeholder="طباشيري أو رقم اللوحة" class="form-control text-center mx-auto">
+                    <input type="date" name="StartDate" placeholder="طباشيري أو رقم اللوحة" value="{{old("StartDate")}}" class="form-control text-center mx-auto">
                 </div>
                 <div class="data-name col-3 m-4">
                     <h3 class="text-light text-center mb-3">تاريخ النهاية</h3>
-                    <input type="date" name="EndDate" placeholder="طباشيري أو رقم اللوحة" class="form-control text-center mx-auto">
+                    <input type="date" name="EndDate" placeholder="طباشيري أو رقم اللوحة" value="{{old("EndDate")}}" class="form-control text-center mx-auto">
                 </div>
                </div>
              
@@ -178,8 +178,6 @@
 
               }
           });
-
-
 
     </script>          
 @endsection
