@@ -124,7 +124,7 @@ class AuthController extends Controller
     public function DeleteUserLogic($id)
     {
         Auth::where("id",$id)->delete();
-        session()->flash('message', 'done');
+        session()->flash('message', 'تم حذف المستخدم بنجاح');
 
         return redirect("/admin/newuser");
     }

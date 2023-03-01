@@ -24,7 +24,7 @@ class ExportMovment implements FromView , ShouldAutoSize
     public function view(): View
     {
 
-        return view("admin.exports.movment", ["Movments"=> session()->get('data')]);
+        return view("admin.exports.movment", ["Movments"=> session()->get('data-export')]);
     }
 
 }
