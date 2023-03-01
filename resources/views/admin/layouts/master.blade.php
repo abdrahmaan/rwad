@@ -26,9 +26,11 @@
     <!-- Header -->
     <header class="d-flex justify-content-end align-items-center px-lg-5 px-1">
 
-        <h3 class="title text-light">
+        <h3 class="title text-light d-flex align-items-center">
            @yield('title')
-            <i class="@yield('icon')"></i>
+            {{-- <i class="@yield('icon')"></i> --}}
+            
+            <img id="logo-header" class="mx-2" src="/includes/img/logo.png" width="60px" alt="logo">
         </h3>
 
         <button class="btn" style="height: fit-content;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
