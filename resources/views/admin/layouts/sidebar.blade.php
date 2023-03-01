@@ -1,5 +1,5 @@
 
-    @if (session()->get('user-data')->Role == "Admin")
+    @if (session()->get('user-data')->Role == "Admin" || session()->get('user-data')->Role == "المدير المالى")
         <!-- Sidebar Start -->
         <div class="offcanvas offcanvas-end" data-bs-backdrop="true" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
           <div class="offcanvas-header my-2 d-flex flex-row-reverse align-items-center ">
@@ -166,8 +166,7 @@
     @endif
 
     
-
-    @if (session()->get('user-data')->Role !== "Admin") 
+    @if (session()->get('user-data')->Role !== "Admin" && session()->get('user-data')->Role !== "المدير المالى") 
       <!-- Sidebar Start -->
       <div class="offcanvas offcanvas-end" data-bs-backdrop="true" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
         <div class="offcanvas-header my-2 d-flex flex-row-reverse align-items-center ">
@@ -418,3 +417,4 @@
              
 
     @endif
+ 

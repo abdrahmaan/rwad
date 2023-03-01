@@ -16,7 +16,8 @@ class JustAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(session()->get("user-data")->Role == "Admin"){
+        if(session()->get("user-data")->Role == "Admin" ||
+        session()->get('user-data')->Role == "المدير المالى"){
 
             return $next($request);
             

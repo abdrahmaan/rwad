@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class Accountant
+class AccountantManager
 {
     /**
      * Handle an incoming request.
@@ -17,15 +17,13 @@ class Accountant
     public function handle(Request $request, Closure $next)
     {
 
-        if(session()->get("user-data")->Role == "Admin" || session()->get("user-data")->Role == "Accountant" ){
+        if(session()->get('user-data')->Role == "المدير المالى"){
 
             return $next($request);
-            
         } else {
-
+            
             session()->flush();
             return redirect("/login");
         }
-
     }
 }

@@ -57,6 +57,7 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Auth::class,
         'user' => \App\Http\Middleware\NonUser::class,
         'data-entry-manager' => \App\Http\Middleware\DataEntryManager::class,
+        'accountant-manager' => \App\Http\Middleware\AccountantManager::class,
         'data-entry' => \App\Http\Middleware\DataEntryUser::class,
         'inventory-user' => \App\Http\Middleware\InventroyUser::class,
         'purchase-user' => \App\Http\Middleware\PurchaseUser::class,
