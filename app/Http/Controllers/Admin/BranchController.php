@@ -55,6 +55,7 @@ class BranchController extends Controller
         ]);
         
         $insert->save();
+        
         return redirect('/admin/branches/create')->with("message","تم إضافة الفرع بنجاح");
 
 

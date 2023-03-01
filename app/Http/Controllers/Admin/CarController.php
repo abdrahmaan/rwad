@@ -27,6 +27,7 @@ class CarController extends Controller
         
     }
     
+    // Search Function
     public function search(Request $request){
         
 
@@ -83,10 +84,12 @@ class CarController extends Controller
            }
 
         }
+        
         return view('admin.car.index',["Branches" => $Branches, "Cars"=> $Data]);
 
     }
 
+    // API Function To Get Cars Date For Client Side
     public function getAllCars(){
 
         $Cars = Car::all();

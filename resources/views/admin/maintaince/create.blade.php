@@ -81,6 +81,9 @@
     
 <script>
 
+let Api = new API();
+
+Api.GetCarsData();
 
 let fakeData = [
   {
@@ -123,55 +126,54 @@ function Events(){
   // Click Enter On Tabashery
   inputs[2].addEventListener("keydown",(e)=>{
 
-    let form = document.querySelector("form");
-    form.addEventListener("submit",(e)=>{
-      e.preventDefault();
-    });
+
+if(e.ctrlKey && e.keyCode == 13){
 
 
-    if(e.ctrlKey && e.keyCode == 13){
+let newInputs = document.querySelectorAll("input");
+let CarsData = JSON.parse(window.localStorage.getItem("cars"));
+let isFound = false;
 
 
-    let newInputs = document.querySelectorAll("input");
+for(let i = 0; i < CarsData.length; i++) {
+  
+  if(CarsData[i].Tabashery == Number(e.target.value)){
 
-    let isFound =false;
-
-    fakeData.forEach(car => {
-
-      if(car.Tabashery == e.target.value){
-        newInputs[3].value = car.PlateName;
-        newInputs[4].value = car.CarType;
-        newInputs[7].value = car.BranchName;
-        newInputs[5].focus();
-        isFound = true;
-        return;
+      newInputs[3].value = CarsData[i].PlateNumber;
+      newInputs[4].value = CarsData[i].CarType;
+      newInputs[7].value = CarsData[i].BranchName;
+      newInputs[5].focus();
+      isFound = true;
+      break;
+      
       } else {
-        isFound = false;
-      }
 
-    });
-
-    if(isFound == false){
-        
-    newInputs[2].value = "";
-    newInputs[3].value = "";
-    newInputs[4].value = "";
-    newInputs[5].value = "";
-    newInputs[6].value = "";
-    newInputs[7].value = "";
-    newInputs[2].focus();
-    Swal.fire({
-    icon: "info",
-    title: "لا يوجد سيارة بهذا الرقم",
-    confirmButtonText: "رجوع",
-          confirmButtonColor: "#e01a22",
-    });
-    e.target.value = "";
-    }
+      isFound = false;
+  }
+}
 
 
-    }
+if(isFound == false){
+    
+  newInputs[2].value = "";
+  newInputs[3].value = "";
+  newInputs[4].value = "";
+  newInputs[5].value = "";
+  newInputs[6].value = "";
+  newInputs[7].value = "";
+  newInputs[2].focus();
+  Swal.fire({
+  icon: "info",
+  title: "لا يوجد سيارة بهذا الرقم",
+  confirmButtonText: "رجوع",
+        confirmButtonColor: "#e01a22",
   });
+  e.target.value = "";
+  }
+
+
+}
+}); 
 
   inputs[7].addEventListener("keydown",(e)=>{
     if(e.ctrlKey && e.keyCode == 13){

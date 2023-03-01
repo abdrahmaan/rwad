@@ -32,20 +32,10 @@ class MaintainceController extends Controller
         $branchs = Branch::all();
 
         // session()->flash("error","لا يوجد قطع غيار فى المخزن من الصنف المحدد");
-
         return view('admin.maintaince.create' , ["Branches"=>$branchs]);
         
     }
 
-
-
-     public function  getAllPayouts()
-    {
-            $data = Payout::all();
-            $response = response()->json($data);
-
-            return $response;
-    }
     /**
      * Store a newly created resource in storage.
      *
@@ -81,16 +71,6 @@ class MaintainceController extends Controller
 
         ]);
 
-
-            //  $insert =  Payout::create([
-            //     'Desc' => $request->Desc,
-            //     'Type' => $request->Type,
-            //     'Amount'=> $request->Amount,
-            //     'Branch' => $request->Branch,
-            //     'User' => $request->session()->get('user-data')->FullName,
-
-            //     ]);
-            //     $insert->save();
                 session()->flash("message","تم تسجيل الصيانة بنجاح");
                 return redirect("/admin/maintainces/create");
     }

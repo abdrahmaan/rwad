@@ -19,11 +19,11 @@ use App\Http\Controllers\Admin\CarController;
 */
 
 
-// (Admin - Captin - Accountant ) Routes + Auth Route Access
+// (Admin - DataEntry - Accountant ) Routes + Auth Route Access
 Route::prefix("admin")->middleware('auth')->group(function (){
 
 
-    // DataEntry Manger Routes Access
+    // DataEntry Manger Routes
     Route::middleware('data-entry-manager')->group(function(){
 
         
@@ -37,6 +37,7 @@ Route::prefix("admin")->middleware('auth')->group(function (){
 
     });
 
+    // DataEntry  Routes
     Route::middleware('data-entry')->group(function(){
 
         // Movments
@@ -49,6 +50,7 @@ Route::prefix("admin")->middleware('auth')->group(function (){
         Route::resource('maintainces', 'App\Http\Controllers\Admin\MaintainceController');
     });
 
+    // Inventory Manger Routes
     Route::middleware('inventory-user')->group(function(){
 
              // Inventory
@@ -56,11 +58,11 @@ Route::prefix("admin")->middleware('auth')->group(function (){
 
     });
 
+    // Purchases Manager Routes
     Route::middleware('purchase-user')->group(function(){
         // Purchase
         Route::resource('purchases', 'App\Http\Controllers\Admin\PurchaceController');
     });
-    
     
     // Admin Only Routes Access
     Route::middleware('just-admin')->group(function(){
@@ -79,7 +81,7 @@ Route::prefix("admin")->middleware('auth')->group(function (){
     });
 
    
-    //Logout
+    //Logout For All SignIn 
     Route::get("/logout", [AuthController::class, "LogOutLogic"]);
 
 });

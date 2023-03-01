@@ -98,7 +98,8 @@ class MovmentController extends Controller
 
         if(isset($request->Export)){
 
-            session()->put('data',$Data);
+            session()->put('data-export',$Data);
+
             return Excel::download(new ExportMovment, "تحركات عربية $Tabashery من $StartDate - $EndDate.xlsx");
 
         } else {
@@ -130,6 +131,8 @@ class MovmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
     public function store(Request $request)
     {
 
@@ -158,6 +161,7 @@ class MovmentController extends Controller
 
         ]);
 
+        // New Movment Insert 
         CarMovment::create([
             'Tabashery'=> $request->Tabashery,
             'PlateNumber'=> $request->PlateNumber,
@@ -169,6 +173,7 @@ class MovmentController extends Controller
             'op' =>  session()->get("user-data")->FullName,
         ]);
 
+        // Set Car Counter With Last Counter
         Car::where("Tabashery",$request->Tabashery)->update([
             "SCounter" => $request->EndCounter
         ]);
@@ -215,7 +220,6 @@ class MovmentController extends Controller
             session()->flash("error","لا يمكن التعديل غير على أخر عداد مسجل للسيارة فقط");
             return redirect("/admin/movments");
 
-            // return view('admin.movment.index', $passData);
         }
   
         
@@ -256,15 +260,19 @@ class MovmentController extends Controller
 
         $MovmentEndCounter = $request->EndCounter;
 
+
+
             Car::where("Tabashery",$request->Tabashery)->update([
                 "SCounter" => $MovmentEndCounter
             ]);
+
 
             CarMovment::where("id",$id)->update([
                 "EndCounter" => $MovmentEndCounter,
                 "Diff" => $request->Diff
             ]);
 
+            
             session()->flash("message","تم تعديل الحركة بنجاح");
             return redirect("/admin/movments");
             

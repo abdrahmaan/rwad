@@ -88,6 +88,7 @@ document.addEventListener('keydown', (e) => {
 
   // 48 = 0 key
   // 32 = space key
+  // 13 = Enter Key 
 
   if(e.ctrlKey && e.keyCode == 32) {
 

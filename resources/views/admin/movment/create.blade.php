@@ -69,24 +69,12 @@
 <script>
 
 
-  fetch("http://alrwad.me/api/admin/cars")
-  .then(res => res.json())
-  .then(res => {
-      window.localStorage.setItem("cars",JSON.stringify(res));
-  })
+let Api = new API();
 
-let fakeData = [
-  {
-    PlateNumber: "أ ل ف - 456",
-    Tabashery: 45,
-    CarType: "نقل اموال",
-    SCounter: "567888",
-    BranchName: "القاهرة",
-  }
-];
+Api.GetCarsData();
 
 
-  // Focus
+  // Focus On Input
   window.onload = () =>{
 
     let inputs = document.querySelectorAll("input");
@@ -99,12 +87,11 @@ let fakeData = [
   }
   
   
-  let form = document.querySelector("form");
   setInterval(() => {
-    
-    Events();
+        
+        Events();
 
-}, 1100);
+  }, 1100);
  
 
 
@@ -146,21 +133,21 @@ function Events(){
 
     if(isFound == false){
         
-    newInputs[2].value = "";
-    newInputs[3].value = "";
-    newInputs[4].value = "";
-    newInputs[5].value = "";
-    newInputs[6].value = "";
-    newInputs[7].value = "";
-    newInputs[2].focus();
-    Swal.fire({
-    icon: "info",
-    title: "لا يوجد سيارة بهذا الرقم",
-    confirmButtonText: "رجوع",
-          confirmButtonColor: "#e01a22",
-    });
-    e.target.value = "";
-    }
+      newInputs[2].value = "";
+      newInputs[3].value = "";
+      newInputs[4].value = "";
+      newInputs[5].value = "";
+      newInputs[6].value = "";
+      newInputs[7].value = "";
+      newInputs[2].focus();
+      Swal.fire({
+      icon: "info",
+      title: "لا يوجد سيارة بهذا الرقم",
+      confirmButtonText: "رجوع",
+            confirmButtonColor: "#e01a22",
+      });
+      e.target.value = "";
+      }
 
 
     }

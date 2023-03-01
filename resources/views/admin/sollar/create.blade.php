@@ -71,17 +71,9 @@
     
 <script>
 
+  let Api = new API();
 
-let fakeData = [
-  {
-    PlateName: "أ ل ف - 456",
-    Tabashery: "45",
-    CarType: "نقل اموال",
-    SCounter: "567888",
-    BranchName: "القاهرة",
-  }
-];
-
+  Api.GetCarsData();
 
   // Focus
   window.onload = () =>{
@@ -110,7 +102,7 @@ function Events(){
   let inputs = document.querySelectorAll("input");
   let form = document.querySelector("form");
       
-  // Click Enter On Tabashery
+  // Click ctrl + Enter On Tabashery
   inputs[2].addEventListener("keydown",(e)=>{
 
     let form = document.querySelector("form");
@@ -124,22 +116,25 @@ function Events(){
 
     let newInputs = document.querySelectorAll("input");
 
+    let cars = JSON.parse(window.localStorage.getItem("cars"));
     let isFound =false;
 
-    fakeData.forEach(car => {
+    for (let i = 0; i < cars.length; i++) {
 
-      if(car.Tabashery == e.target.value){
-        newInputs[3].value = car.PlateName;
-        newInputs[4].value = car.CarType;
-        newInputs[9].value = car.BranchName;
+       if(cars[i].Tabashery == Number(e.target.value)){
+        newInputs[3].value = cars[i].PlateNumber;
+        newInputs[4].value = cars[i].CarType;
+        newInputs[9].value = cars[i].BranchName;
         newInputs[5].focus();
         isFound = true;
+
         return;
+
       } else {
         isFound = false;
       }
-
-    });
+      
+    }
 
     if(isFound == false){
         
@@ -163,6 +158,8 @@ function Events(){
     }
   });
 
+
+  // Click ctrl + Enter On Sollar Price To Get Total
   inputs[7].addEventListener("keydown",(e)=>{
     if(e.ctrlKey && e.keyCode == 13){
       let newInputs = document.querySelectorAll("input");
@@ -170,18 +167,20 @@ function Events(){
 
 
     }
-  })
+  });
+
+  // Click ctrl + Enter On Sollar Price To Get Total
   inputs[6].addEventListener("keydown",(e)=>{
+
     if(e.ctrlKey && e.keyCode == 13){
       let newInputs = document.querySelectorAll("input");
       newInputs[8].value =  newInputs[7].value  *  newInputs[6].value;
 
 
     }
-  })
+  });
 
-
-  // Tabashery == Null
+  // Tabashery == Null When Change
   inputs[2].addEventListener("change",(e)=>{
 
     if(e.target.value == ""){
@@ -202,7 +201,7 @@ function Events(){
     }
   }); 
 
-  // Save Data Shortcut
+  // Save Data Shortcut ctrl + space
   document.addEventListener('keydown', (e) => {
 
       let form = document.querySelector("form");

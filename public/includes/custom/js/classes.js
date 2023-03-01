@@ -416,3 +416,19 @@ class Validator {
 
 }
 
+
+class API {
+
+   
+     url = "http://alrwad.me/api";
+
+     GetCarsData() {
+        fetch(`${this.url}/admin/cars`)
+        .then(res => res.json())
+        .then(res => {
+            window.localStorage.setItem("cars",JSON.stringify(res));
+        })
+      
+    }
+}
+
