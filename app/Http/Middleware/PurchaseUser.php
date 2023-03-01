@@ -17,7 +17,9 @@ class PurchaseUser
     public function handle(Request $request, Closure $next)
     {
       
-        if(session()->get("user-data")->Role == "Admin" || session()->get("user-data")->Role == "مشتريات" ){
+        if(session()->get("user-data")->Role == "Admin" ||
+         session()->get("user-data")->Role == "مشتريات" ||
+         session()->get('user-data')->Role == "المدير المالى"){
 
             return $next($request);
             

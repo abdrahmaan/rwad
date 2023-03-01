@@ -26,6 +26,7 @@
           <label class="text-light fs-4 mb-2">التحكم</label>
           <select class="w-50 text-center form-control mx-auto" name="Role" name="" id="">
             <option value="Admin">Admin</option>
+            <option value="المدير المالى">المدير المالى</option>
             <option value="مدير إدخال بيانات">مدير إدخال بيانات</option>
             <option value="مدخل بيانات">مدخل بيانات</option>
             <option value="مسؤول مخزن">مسؤول مخزن</option>

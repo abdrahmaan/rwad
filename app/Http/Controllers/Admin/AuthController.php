@@ -47,7 +47,11 @@ class AuthController extends Controller
                 break;
                 
                 case 'مدير إدخال بيانات':
-                    return redirect("/admin/");           
+                    return redirect("/admin");           
+                break;
+                
+                case 'المدير المالى':
+                    return redirect("/admin");           
                 break;
 
                 case 'مدخل بيانات':

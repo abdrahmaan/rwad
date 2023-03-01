@@ -17,7 +17,11 @@ class DataEntryUser
     public function handle(Request $request, Closure $next)
     {
        
-        if(session()->get("user-data")->Role == "Admin" || session()->get("user-data")->Role == "مدخل بيانات" || session()->get("user-data")->Role == "مدير إدخال بيانات" || session()->get("user-data")->Role == "مدخل بيانات" || session()->get("user-data")->Role == "مدير الحركة" ){
+        if(session()->get("user-data")->Role == "Admin" ||
+         session()->get("user-data")->Role == "مدخل بيانات" ||
+          session()->get("user-data")->Role == "مدير إدخال بيانات" ||
+            session()->get("user-data")->Role == "مدير الحركة" ||
+            session()->get('user-data')->Role == "المدير المالى" ){
 
             return $next($request);
             
