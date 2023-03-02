@@ -69,15 +69,7 @@
 <script>
 
 
-<<<<<<< HEAD
-  fetch("http://alrwad.abdelrahmaan.com/api/admin/cars")
-  .then(res => res.json())
-  .then(res => {
-      window.localStorage.setItem("cars",JSON.stringify(res));
-  })
-=======
 let Api = new API();
->>>>>>> sollar
 
 Api.GetCarsData();
 
