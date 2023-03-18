@@ -3,7 +3,7 @@
     @extends('admin.layouts.master')
 
 
-    @section('title',"الإحصائيات")
+    @section('title',"الرئيسية")
     @section('icon',"bi bi-graph-up-arrow mx-1")
 
 
@@ -22,25 +22,77 @@
 
            {{-- {{dd($data)}} --}}
 
-
+            
            <section class="row m-0 p-0  justify-content-center flex-row-reverse" style="min-height: 500px">
 
-            <div class="col-lg-5 col-12 my-3">
+            
+            <div class="col-lg-9 col-12 my-3">
                 <div class="card border-0" style="min-height: 300px">
-                    <div class="card-header text-center">
-                        <h3 class="text-light">
-                            السيارات
-                            <i class="bi bi-car-front-fill"></i>
+                    <div class="card-header text-center d-flex justify-content-between align-items-center">
+                        <h3 class="text-warning fs-5">
+                            مشاهدة الكل
                          </h3>
+                        <h3 class="text-light">
+                            الإشعارات
+                            <i class="bi bi-bell-fill"></i>
+                         </h3>
+                        
                     </div>
-                    <div class="card-body">
+                    <div class="card-body p-0">
  
-                     <canvas class="two-data" style="min-height: 300px;">
+                     <table class="table table-light table-striped table-bordered text-center align-middle" dir="rtl">
+                         <thead>
+                             <th>#</th>
+                             <th>الفرع</th>
+                             <th>طباشيرى</th>
+                             <th>رقم اللوحة</th>
+                             <th>الإشعار</th>
+                             <th>البيان</th>
+                             <th>المسؤول</th>
+                         </thead>
+                         <tbody>
+                             <tr>
+                                 <td>
+                                     <img src="/includes/img/car-transfer.png" width="70px" alt="">
+                                 </td>
+                                 <td>القاهرة</td>
+                                 <td>45</td>
+                                 <td>أ ل ق - 467</td>
+                                 <td>تغيير (فتر زيت) مبكر</td>
+                                 <td>تغيير مبكر 50 كيلو عن عداد 785412</td>
+                                 <td>كريم غانم</td>
+                             </tr>
+                             <tr>
+                                 <td>
+                                     <img src="/includes/img/car-transfer.png" width="70px" alt="">
+                                 </td>
+                                 <td>الإسكندرية</td>
+                                 <td>60</td>
+                                 <td>د س ق - 594</td>
+                                 <td>إقتراب تغيير (فتر هواء)</td>
+                                 <td>تغيير (فلتر هواء) بعد 50 كيلو عند عداد 567098</td>
+                                 <td>Automatic</td>
+                             </tr>
+                             <tr>
+                                 <td>
+                                     <img src="/includes/img/car-transfer.png" width="70px" alt="">
+                                 </td>
+                                 <td>المنصورة</td>
+                                 <td>88</td>
+                                 <td>أ م ر - 894</td>
+                                 <td>تمويين مبكر للوقود</td>
+                                 <td>تمويين مبكر 35 كيلو عن عداد 555723</td>
+                                 <td>محمود كريم</td>
+
+                             </tr>
+                         </tbody>
+                     </table>
  
                      </canvas>
                     </div>
                 </div>
             </div>
+     
             <div class="col-lg-5 col-12 my-3">
                <div class="card border-0" style="min-height: 300px">
                    <div class="card-header bg-dark text-center">
@@ -74,23 +126,24 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5 col-12 my-3">
+
+            <div class="col-lg-9 col-12 my-3">
                 <div class="card border-0" style="min-height: 300px">
-                    <div class="card-header bg-dark text-center">
+                    <div class="card-header text-center">
                         <h3 class="text-light">
-                            المشتريات
-                            <i class="bi bi-currency-dollar"></i>
+                            السيارات
+                            <i class="bi bi-car-front-fill"></i>
                          </h3>
                     </div>
                     <div class="card-body">
  
-                     <canvas class="five-data" style="min-height: 300px;">
+                     <canvas class="two-data" style="min-height: 300px; width:100%">
  
                      </canvas>
                     </div>
                 </div>
             </div>
-
+    
 
 
            <style>
@@ -117,7 +170,7 @@
 
                 .card-header{
                     /* background: linear-gradient(203deg, rgba(133,24,24,1) 20%, rgba(9,9,121,1) 40%) !important; */
-        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgb(32, 157, 182) 100%) !important; 
+                     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgb(32, 157, 182) 100%) !important; 
 
 
                 }
