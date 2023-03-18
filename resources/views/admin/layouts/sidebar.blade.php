@@ -13,10 +13,18 @@
             <h4 class="role text-light bg-danger w-50 mx-auto rounded text-center mt-2 mb-3 fs-5">{{session()->get('user-data')->Role}}</h4>
           <hr class="dropdown-divider bg-light w-100 mx-auto" style="min-height: 2px;">
           <div class="offcanvas-body d-flex flex-column align-items-end px-0">
-              <!-- الإحصائيات -->
+              <!-- الرئيسية -->
               <a class="dropdown-item text-light text-end pe-3 py-2" href="{{route('dashboard.index')}}">
-                  الإحصائيات
+                  الرئيسية
                   <i class="bi bi-graph-up-arrow mx-1"></i>
+                </a>
+              <!-- الإشعارات -->
+              <a class="dropdown-item text-light text-end pe-3 py-2" href="/admin/notifcations">
+                <span class="badge badge-danger bg-danger">4</span>
+
+                  الإشعارات
+                  <i class="bi bi-bell-fill mx-1"></i>
+                  
                 </a>
               <!-- السيارات -->
               <div class="dropdown w-100 mb-2">
@@ -67,6 +75,10 @@
                         بحث فى تسجيلات السولار
                         <i class="bi bi-pie-chart-fill mx-1"></i>
                       </a></li>
+                    <li><a class="dropdown-item text-light" href="{{route('sollars.index')}}">
+                         سعر السولار
+                        <i class="bi bi-coin mx-1"></i>
+                      </a></li>
                   </ul>
               </div>
               <!-- الصيانة -->
@@ -86,7 +98,7 @@
                       </a></li>
                   </ul>
               </div>
-              <!-- المخازن -->
+              {{-- <!-- المخازن -->
               <div class="dropdown w-100 mb-2">
                   <button class="btn text-light dropdown-toggle text-end w-100 pe-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   إدارة المخازن
@@ -102,8 +114,8 @@
                         <i class="bi bi-pie-chart-fill mx-1"></i>
                       </a></li>
                   </ul>
-              </div>
-              <!-- المشتريات -->
+              </div> --}}
+              {{-- <!-- المشتريات -->
               <div class="dropdown w-100 mb-2">
                   <button class="btn text-light dropdown-toggle text-end w-100 pe-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   إدارة المشتريات
@@ -119,7 +131,7 @@
                         <i class="bi bi-pie-chart-fill mx-1"></i>
                       </a></li>
                   </ul>
-              </div>
+              </div> --}}
               <!-- الحسابات -->
               <div class="dropdown w-100 mb-2">
                   <button class="btn text-light dropdown-toggle text-end w-100 pe-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -151,6 +163,10 @@
                       <li><a class="dropdown-item text-light" href="/admin/branches/create">
                           بنود الصيانة
                           <i class="bi bi-collection-fill mx-1"></i>
+                        </a></li>
+                      <li><a class="dropdown-item text-light" href="/admin/logging">
+                          تسجيلات الدخول
+                          <i class="bi bi-person-fill mx-1"></i>
                         </a></li>
                   </ul>
               </div>

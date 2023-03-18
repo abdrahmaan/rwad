@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CarController;
-
+use App\Models\Branch;
 
 
 /*
@@ -22,6 +22,22 @@ use App\Http\Controllers\Admin\CarController;
 // (Admin - DataEntry - Accountant ) Routes + Auth Route Access
 Route::prefix("admin")->middleware('auth')->group(function (){
 
+    /// Tests Start
+    Route::get('logging', function () {
+        $branchs = Branch::all();
+        return view('admin.logging.index' , ['Branches' => $branchs]);
+    });
+    Route::get('notifcations', function () {
+        $branchs = Branch::all();
+        return view('admin.notifcation.index' , ['Branches' => $branchs]);
+    });
+
+    Route::get('test', function () {
+        return view('admin..maintaince.mokeup');
+    });
+
+
+    // Tests End
 
     // DataEntry Manger Routes
     Route::middleware('data-entry-manager')->group(function(){

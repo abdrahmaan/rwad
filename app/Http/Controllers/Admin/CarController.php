@@ -157,15 +157,9 @@ class CarController extends Controller
     {
 
 
-        $PlayerData = Player::where("id",$id)->get()->first();
-        $PlayerSkill = Skill::where("PlayerCode",$id)->get()->all();
+        $passData = ["id" => $id];
 
-        $passData = [
-            'Player' =>$PlayerData,
-            "Skills"=> $PlayerSkill
-        ];
-
-        return view("admin.player.show")->with('data',$passData);
+        return view("admin.car.show")->with($passData);
 
     }
 

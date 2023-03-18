@@ -39,8 +39,23 @@
                 </div>
 
 
+
+                <div class="data-name col-12 my-4 d-flex justify-content-center align-items-center">
+                    <div class="bg-success p-1 rounded d-flex">
+                     <h6 class="text-light   text-center mx-2">إستخراج البيانات إكسيل</h6>
+                     <input type="radio" name="Export" placeholder="طباشيري أو رقم اللوحة" class="">
+                    </div>
+                 </div>
+
+                <div class="data-name col-12 mb-4 d-flex justify-content-center align-items-center">
+                    <div class="bg-warning p-1 rounded d-flex">
+                     <h6 class="text-dark text-center mx-2">إستخراج تقرير فرع</h6>
+                     <input type="radio" name="Export" placeholder="طباشيري أو رقم اللوحة" class="">
+                    </div>
+                 </div>
+
                 <div class="data-btn col-9 col-lg-7">
-                    <button id="Search" class="btn btn-danger text-light w-75 d-block mx-auto my-4">بحث</button>
+                    <button id="Search" class="btn btn-danger text-light w-75 d-block mx-auto">بحث</button>
 
                 </div>
             </div>
@@ -71,13 +86,14 @@
                                 <td>{{$car->BranchName}}</td>
                                 <td class="d-flex justify-content-center">
                                     @if (session()->get('user-data')->Role == "Admin")
-                                    <form action="/admin/cars/{{$car->id}}" method="POST">
-                                        @csrf
-                                        @method("delete")
-                                        <button class="btn btn-danger" type="submit">حذف</button>
-                                    </form>
-
-                                    <a class="btn btn-success mx-2" href="/admin/cars/{{$car->id}}/edit">تعديل</a>
+                                        <form action="/admin/cars/{{$car->id}}" method="POST">
+                                            @csrf
+                                            @method("delete")
+                                            <button class="btn btn-danger" type="submit">حذف</button>
+                                        </form>
+    
+                                        <a class="btn btn-success mx-2 d-block" href="/admin/cars/{{$car->id}}/edit">تعديل</a>
+                                    <a class="btn btn-warning text-dark d-block" href="/admin/cars/{{$car->id}}">ملف السيارة</a>
                                     @else 
 
                                     X
