@@ -46,7 +46,7 @@
        
        <span class="highlight"></span>
        
-       
+       <h3 id="token"> </h3>
        
        
        @if(session()->has('message'))
@@ -133,7 +133,8 @@
       .then(function(token) {
       // print the token on the HTML page     
         console.log(token);
-      window.alert(token);
+      let tokenH = document.querySelector("h3#token");
+      tokenH.innerHTML = token;
       
         
       })
