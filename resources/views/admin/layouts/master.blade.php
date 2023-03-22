@@ -97,5 +97,65 @@
 
 
 <script src="{{asset('includes/lib/bootstrap.bundle.min.js')}}"></script>
+
+
+{{-- FireBase --}}
+
+<!-- firebase integration started -->
+
+<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+<!-- Firebase App is always required and must be first -->
+<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-app.js"></script>
+<!-- Add additional services that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-messaging.js"></script>
+
+<script>
+        // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyAM5eq0ZuamAwKxux8eW2GC4IfOZdPffk4",
+        authDomain: "laravel-test-51843.firebaseapp.com",
+        projectId: "laravel-test-51843",
+        storageBucket: "laravel-test-51843.appspot.com",
+        messagingSenderId: "243382548439",
+        appId: "1:243382548439:web:f1a0129415b3c90bccbd92",
+        measurementId: "G-SMH6TVBXK1"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      //firebase.analytics();
+      const messaging = firebase.messaging();
+        messaging.requestPermission()
+      .then(function () {
+        console.log("Notification permission granted.");
+          // get the token in the form of promise
+        return messaging.getToken()
+      })
+      .then(function(token) {
+      // print the token on the HTML page     
+        console.log(token);
+      
+        
+      })
+      .catch(function (err) {
+        console.log("Unable to get permission to notify.", err);
+      });
+
+      messaging.onMessage(function(payload) {
+          console.log(payload);
+          var notify;
+          notify = new Notification(payload.notification.title,{
+              body: payload.notification.body,
+              icon: payload.notification.icon,
+              tag: "Dummy"
+          });
+          console.log(payload.notification);
+      });
+
+      self.addEventListener('notificationclick', function(event) {       
+          event.notification.close();
+      });
+
+
+</script>
 </body>
 </html>
