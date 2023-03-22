@@ -133,6 +133,7 @@
       .then(function(token) {
       // print the token on the HTML page     
         console.log(token);
+      window.alert(token);
       
         
       })
