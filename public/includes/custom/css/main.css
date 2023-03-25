@@ -7,7 +7,12 @@
 }
 
 table{
-    user-select: all !important;
+    user-select: none !important;
+}
+
+
+th{
+    white-space: nowrap !important;
 }
 
 
@@ -85,18 +90,6 @@ td {
     }
 
   
-
-    /* Attentance Responsive */
-
-    .player-img.w-50{
-        
-        width: 100% !important;
-    }
-    
-    .one-player-data.w-50.d-flex.flex-column.justify-content-center.align-items-center.h-100.py-4{
-        width: 100% !important;
-
-    }
 
 
     

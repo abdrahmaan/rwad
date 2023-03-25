@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CarController;
+use App\Http\Controllers\Admin\CarTypeController;
 use App\Models\Branch;
 
 
@@ -37,6 +38,7 @@ Route::prefix("admin")->middleware('auth')->group(function (){
     });
 
 
+    Route::resource('cartypes', CarTypeController::class);
     // Tests End
 
     // DataEntry Manger Routes
@@ -44,7 +46,7 @@ Route::prefix("admin")->middleware('auth')->group(function (){
 
         
         Route::get('/', 'App\Http\Controllers\Admin\DashboardController@index')->name('dashboard.index');
-        Route::get('dashboard', 'App\Http\Controllers\Admin\DashboardController@index')->name('dashboard.index');
+        Route::get('dashboard', 'App\Http\Controllers\Admin\DashboardController@index');
 
         // Cars
         Route::resource('cars', 'App\Http\Controllers\Admin\CarController');

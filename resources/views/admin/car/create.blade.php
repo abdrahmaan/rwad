@@ -15,29 +15,36 @@
 
       <div class="container">
         <div class="data-info row p-0 m-0 w-100 flex-row-reverse justify-content-center align-items-center">
-          <div class="data-text col-4 my-2 text-center mb-3">
+          <div class="data-text col-11 col-lg-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">طباشيرى</label>
             <input id="name" class="form-control w-100 text-center mx-auto" name="Tabashery" type="text" value="{{old('Tabashery')}}" placeholder="طباشيرى">
           </div>
-          <div class="data-text col-4 my-2 text-center mb-3">
+          <div class="data-text col-11 col-lg-4 my-2 text-center mb-3">
+            <label class="text-light fs-4 mb-2">نوع السيارة</label>
+            <select class="w-100 text-center form-control mx-auto" name="CarType" name="" id="">
+              @isset($cartypes)
+                @foreach ($cartypes as $cartype)
+  
+                  <option value="{{$cartype->CarType}}">{{$cartype->CarType}}</option>
+                    
+                @endforeach
+              @endisset
+          </select>
+          </div>
+          <div class="data-text col-11 col-lg-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">رقم اللوحة</label>
             <input class="form-control w-100 text-center mx-auto" name="PlateNumber" value="{{old('PlateNumber')}}" type="text" placeholder="أ ل ف - 678">
           </div>
-          <div class="data-text col-4 my-2 text-center mb-3">
-            <label class="text-light fs-4 mb-2">نوع السيارة</label>
-            <select class=" w-100 text-center form-control mx-auto" name="CarType" name="" id="">
-              <option value="ميكروباص">ميكروباص</option>
-              <option value="نقل أموال">نقل أموال</option>
-              <option value="ملاكى">ملاكى</option>
-              <option value="نصف نقل">نصف نقل</option>
-              <option value="موتوسيكل">موتوسيكل</option>
-          </select>
+          <div class="data-text col-11 col-lg-4 my-2 text-center mb-3">
+            <label class="text-light fs-4 mb-2">رقم الشاسية</label>
+            <input class="form-control w-100 text-center mx-auto" name="ShasehNumber" value="{{old('ShasehNumber')}}" type="text" placeholder="Ex. 5728928EIJ829">
           </div>
-          <div class="data-text col-4 my-2 text-center mb-3">
+
+          <div class="data-text col-11 col-lg-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">عداد البداية</label>
             <input class="form-control w-100 text-center mx-auto" name="SCounter" value="{{old('SCounter')}}" type="number" placeholder="Ex. 567666">
           </div>
-          <div class="data-text col-4 my-2 text-center mb-3">
+          <div class="data-text col-11 col-lg-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">الفرع</label>
             <select class="w-100 text-center form-control mx-auto" name="BranchName" name="" id="">
               @isset($branches)
@@ -49,9 +56,13 @@
               @endisset
           </select>
           </div>
-        <button type="submit" class="col-5 d-block btn add-player btn-danger text-light mt-4  mx-auto d-block">تسجيل البيانات</button>
-  
+          <div class="data-text col-11 col-lg-4 my-2 text-center mb-3">
+            <label class="text-light fs-4 mb-2">تاريخ إنتهاء الترخيص</label>
+            <input class="form-control w-100 text-center mx-auto" name="DateExpire" value="{{old('DateExpire')}}" type="date" >
+          </div>
+          
         </div>
+        <button id="btn" type="submit" class="  w-25 d-block btn add-player btn-danger text-light mt-4  mx-auto d-block">تسجيل البيانات</button>
       </div>
       </div>
     

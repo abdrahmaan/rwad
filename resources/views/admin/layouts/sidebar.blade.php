@@ -33,6 +33,15 @@
                     <i class="bi bi-pin-map-fill"></i>
                   </button>
                   <ul class="dropdown-menu  w-100 position-relative text-end rounded-0" style="background-color: #101733;">
+                    
+                    <li><a class="dropdown-item text-light" href="{{route('cartypes.create')}}">
+                        تسجيل نوع سيارة
+                        <i class="bi bi-car-front-fill mx-1"></i>
+                      </a></li>
+                    <li><a class="dropdown-item text-light" href="{{route('cartypes.index')}}">
+                        أنواع السيارات
+                        <i class="bi bi-car-front-fill mx-1"></i>
+                      </a></li>
                     <li><a class="dropdown-item text-light" href="{{route('cars.create')}}">
                         تسجيل سيارة جديدة
                         <i class="bi bi-car-front-fill mx-1"></i>

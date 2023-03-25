@@ -24,9 +24,9 @@
     <script src="{{asset('includes/lib/sweetalert2.all.min.js')}}"></script>  
     <script src="{{asset('includes/home/custom/js/classes.js')}}"></script>
 
- 
 
-    @yield('script')
+
+   @yield('script')
 
     @if($errors->any())
     <script>

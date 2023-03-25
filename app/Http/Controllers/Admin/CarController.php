@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 use App\Models\Branch;
 use App\Models\Car;
+use App\Models\CarType;
 
 
 
@@ -107,9 +108,12 @@ class CarController extends Controller
     public function create()
     {
         $BranchesName = Branch::all();
+        $CarTypes = CarType::all();
         
         $passData = [
-            "branches"=>$BranchesName];
+            "branches"=>$BranchesName,
+            "cartypes" => $CarTypes
+        ];
 
         return view("admin.car.create", $passData);
     }
@@ -120,8 +124,10 @@ class CarController extends Controller
             "Tabashery" => "required|numeric|unique:cars,Tabashery",
             "PlateNumber" => "required|unique:cars,PlateNumber",
             "CarType" => "required",
+            "ShasehNumber" => "required",
             "SCounter" => "required|numeric|min:0",
             "BranchName" => "required",
+            "DateExpire" => "required",
         ],[
             "Tabashery.required" => "حقل الطباشيري مطلوب",
             "Tabashery.numeric" => "حقل الطباشيري يجب أن يكون رقم",
@@ -133,6 +139,8 @@ class CarController extends Controller
             "SCounter.numeric" => "حقل عداد البداية يجب أن يكون رقم صحيح",
             "SCounter.min" => "حقل عداد البداية يجب أن يكون رقم صحيح",
             "BranchName.required" => "حقل الفرع مطلوب",
+            "ShasehNumber.required" => "حقل رقم الشاسية مطلوب",
+            "DateExpire.required" => "حقل تاريخ إنتهاء الترخيص مطلوب",
         ]);
 
 
@@ -142,6 +150,16 @@ class CarController extends Controller
                 "CarType" => $request->CarType,
                 "SCounter" => $request->SCounter,
                 "BranchName" => $request->BranchName,
+                "ShasehNumber" => $request->ShasehNumber,
+                "DateExpire" => $request->DateExpire,
+                "NextSollar" => $request->SCounter + 100,
+                "NextZet" => $request->SCounter + 100,
+                "NextFilterH" => $request->SCounter + 100,
+                "NextFilterZ" => $request->SCounter + 100,
+                "NextFramel" => $request->SCounter + 100,
+                "NextDbryag" => $request->SCounter + 100,
+                "NextKawtsh" => $request->SCounter + 100,
+                "NextSior" => $request->SCounter + 100
             ]);
 
 
@@ -217,6 +235,7 @@ class CarController extends Controller
 
         Car::where("id",$id)->delete();
 
+      
         session()->flash("message","تم حذف السيارة بنجاح");
         return redirect("/admin/cars");
     }

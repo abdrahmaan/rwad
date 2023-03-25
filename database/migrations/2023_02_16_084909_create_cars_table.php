@@ -17,9 +17,19 @@ class CreateCarsTable extends Migration
             $table->id();
             $table->integer("Tabashery");
             $table->string("PlateNumber");
+            $table->string("ShasehNumber");
             $table->string("CarType");
             $table->integer("SCounter");
             $table->string("BranchName");
+            $table->string("DateExpire");
+            $table->integer("NextSollar");
+            $table->integer("NextZet");
+            $table->integer("NextFilterZ");
+            $table->integer("NextFilterH");
+            $table->integer("NextSior");
+            $table->integer("NextKawtsh");
+            $table->integer("NextDbryag");
+            $table->integer("NextFramel");
             $table->timestamps();
         });
     }

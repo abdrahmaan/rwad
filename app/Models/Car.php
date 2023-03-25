@@ -15,7 +15,17 @@ class Car extends Model
         "Tabashery",
         "PlateNumber",
         "CarType",
+        "ShasehNumber",
+        "DateExpire",
         "SCounter",
         "BranchName",
+        "NextSollar",
+        "NextZet",
+        "NextFilterH",
+        "NextFilterZ",
+        "NextFramel",
+        "NextDbryag",
+        "NextKawtsh",
+        "NextSior",
     ];
 }
