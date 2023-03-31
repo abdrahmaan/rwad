@@ -35,7 +35,7 @@
                   <ul class="dropdown-menu  w-100 position-relative text-end rounded-0" style="background-color: #101733;">
                     
                     <li><a class="dropdown-item text-light" href="{{route('cartypes.create')}}">
-                        تسجيل نوع سيارة
+                         نوع سيارة جديد
                         <i class="bi bi-car-front-fill mx-1"></i>
                       </a></li>
                     <li><a class="dropdown-item text-light" href="{{route('cartypes.index')}}">
@@ -72,20 +72,20 @@
               <!-- السولار -->
               <div class="dropdown w-100 mb-2">
                   <button class="btn text-light dropdown-toggle text-end w-100 pe-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    إدارة السولار
+                    إدارة الوقود
                     <i class="bi bi-pin-map-fill"></i>
                   </button>
                   <ul class="dropdown-menu  w-100 position-relative text-end rounded-0" style="background-color: #101733;">
-                    <li><a class="dropdown-item text-light" href="{{route('sollars.create')}}">
-                        تسجيل سولار
+                    <li><a class="dropdown-item text-light" href="{{route('fuel.create')}}">
+                        تسجيل وقود سيارة
                         <i class="bi bi-fuel-pump mx-1"></i>
                       </a></li>
-                    <li><a class="dropdown-item text-light" href="{{route('sollars.index')}}">
-                        بحث فى تسجيلات السولار
+                    <li><a class="dropdown-item text-light" href="{{route('fuel.index')}}">
+                        بحث فى وقود السيارات
                         <i class="bi bi-pie-chart-fill mx-1"></i>
                       </a></li>
-                    <li><a class="dropdown-item text-light" href="{{route('sollars.index')}}">
-                         سعر السولار
+                    <li><a class="dropdown-item text-light" href="/admin/fuelprice">
+                         أسعار الوقود
                         <i class="bi bi-coin mx-1"></i>
                       </a></li>
                   </ul>
@@ -101,7 +101,7 @@
                         تسجيل صيانة جديدة
                         <i class="bi bi-gear-wide-connected mx-1"></i>
                       </a></li>
-                    <li><a class="dropdown-item text-light" href="{{route('cars.index')}}">
+                    <li><a class="dropdown-item text-light" href="{{route('maintainces.index')}}">
                         بحث فى صيانة السيارات
                         <i class="bi bi-pie-chart-fill mx-1"></i>
                       </a></li>

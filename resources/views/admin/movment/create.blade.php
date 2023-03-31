@@ -104,8 +104,8 @@ function Events(){
   inputs[2].addEventListener("keydown",(e)=>{
 
 
-    if(e.ctrlKey && e.keyCode == 13){
-
+    if(e.keyCode == 13){
+      e.preventDefault();
 
     let newInputs = document.querySelectorAll("input");
     let CarsData = JSON.parse(window.localStorage.getItem("cars"));
@@ -166,7 +166,7 @@ function Events(){
     });
 
 
-    if(e.ctrlKey && e.keyCode == 13){
+    if(e.keyCode == 13){
 
 
     let newInputs = document.querySelectorAll("input");

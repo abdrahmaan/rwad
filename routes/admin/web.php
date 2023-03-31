@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CarTypeController;
+use App\Http\Controllers\Admin\FuelPriceController;
 use App\Models\Branch;
 
 
@@ -32,6 +33,9 @@ Route::prefix("admin")->middleware('auth')->group(function (){
         $branchs = Branch::all();
         return view('admin.notifcation.index' , ['Branches' => $branchs]);
     });
+
+    Route::get('notifcations-send','App\Http\Controllers\Admin\NotificationController@index');
+    Route::get('notifcations-tokens','App\Http\Controllers\Admin\NotificationController@Send_FCM');
 
     Route::get('test', function () {
         return view('admin..maintaince.mokeup');
@@ -63,9 +67,11 @@ Route::prefix("admin")->middleware('auth')->group(function (){
         Route::post('/search/movments', 'App\Http\Controllers\Admin\MovmentController@search');
         Route::get('/search/movments', 'App\Http\Controllers\Admin\MovmentController@index');
         // Sollar
-        Route::resource('sollars', 'App\Http\Controllers\Admin\SollarController');
+        Route::resource('fuel', 'App\Http\Controllers\Admin\SollarController');
+        Route::get('fuelprice', 'App\Http\Controllers\Admin\SollarController@fuelprice_Page');
         // Maintaince
         Route::resource('maintainces', 'App\Http\Controllers\Admin\MaintainceController');
+        Route::post('search/maintainces', 'App\Http\Controllers\Admin\MaintainceController@search');
     });
 
     // Inventory Manger Routes

@@ -27,5 +27,6 @@ class Car extends Model
         "NextDbryag",
         "NextKawtsh",
         "NextSior",
+        "CarImg",
     ];
 }

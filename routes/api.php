@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CarController;
+use App\Http\Controllers\Admin\NotificationController;
 
 
 
@@ -24,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get("/admin/cars",[CarController::class,"getAllCars"]);
+Route::post("/admin/fcmtoken",[NotificationController::class,"FCM_Save_Token"]);
 
 
 

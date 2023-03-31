@@ -21,9 +21,11 @@ class CreateMaintaincesTable extends Migration
             $table->integer("Counter");
             $table->string("Desc");
             $table->string("CategName");
-            $table->string("GroupName");
+            $table->string("GroupName")->nullable();
             $table->string("BranchName");
             $table->integer("Count");
+            $table->integer("LastNextCounter");
+            $table->string("CarImg");
             $table->string("op");
             $table->timestamps();
         });

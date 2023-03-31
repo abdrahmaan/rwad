@@ -20,6 +20,27 @@ class Users extends Seeder
             "Role" => "Admin",
         ]);
         User::create([
+            "FullName" => "مستر عاطف البعج",
+            "Username" => "mr.atef",
+            "Password" => "123",
+            "Role" => "المدير المالى",
+        ]);
+
+        User::create([
+            "FullName" => "أحمد سعيد موسى",
+            "Username" => "mr.ahmed",
+            "Password" => "123",
+            "Role" => "مدير إدخال البيانات",
+        ]);
+
+        User::create([
+            "FullName" => "مريم عمرو",
+            "Username" => "mariam",
+            "Password" => "123",
+            "Role" => "مدخل بيانات",
+        ]);
+
+        User::create([
             "FullName" => "محمد حنفي إبراهيم",
             "Username" => "mo_hanafy",
             "Password" => "123",

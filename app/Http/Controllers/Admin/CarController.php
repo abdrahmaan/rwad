@@ -144,6 +144,8 @@ class CarController extends Controller
         ]);
 
 
+            $CarTypeData = CarType::where("CarType",$request->CarType)->first();
+
             $insert = Car::create([
                 "Tabashery" => $request->Tabashery,
                 "PlateNumber" => $request->PlateNumber,
@@ -159,7 +161,8 @@ class CarController extends Controller
                 "NextFramel" => $request->SCounter + 100,
                 "NextDbryag" => $request->SCounter + 100,
                 "NextKawtsh" => $request->SCounter + 100,
-                "NextSior" => $request->SCounter + 100
+                "NextSior" => $request->SCounter + 100,
+                "CarImg"=> $CarTypeData->CarImg
             ]);
 
 
@@ -174,8 +177,8 @@ class CarController extends Controller
     public function show($id)
     {
 
-
-        $passData = ["id" => $id];
+        $CarData = Car::where("id",$id)->first();
+        $passData = ["Car" => $CarData];
 
         return view("admin.car.show")->with($passData);
 

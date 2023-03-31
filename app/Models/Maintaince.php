@@ -21,6 +21,8 @@ class Maintaince extends Model
         "GroupName",
         "BranchName",
         "Count",
+        "LastNextCounter",
+        "CarImg",
         "op",
     ];
 }

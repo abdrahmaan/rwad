@@ -17,7 +17,7 @@ class SollarController extends Controller
     {
 
         $Bracnhes = Branch::all();
-        return view('admin.sollar.index', ["Branches" => $Bracnhes] );
+        return view('admin.fuel.index', ["Branches" => $Bracnhes] );
     }
 
     /**
@@ -29,7 +29,7 @@ class SollarController extends Controller
     {
 
 
-        return view('admin.sollar.create' );
+        return view('admin.fuel.create' );
 
     }
     public function new(Request $request)
@@ -83,7 +83,7 @@ class SollarController extends Controller
     //   $add = Skill::create($request->all());
     //   $add->save();
       $request->session()->flash("message","تم تسجيل السولار بنجاح");
-      return redirect("/admin/sollars/create");
+      return redirect("/admin/fuel/create");
 
     }
 
@@ -135,4 +135,13 @@ class SollarController extends Controller
         session()->flash("message","تم حذف التقييم بنجاح");
         return redirect("/admin/players");
     }
+
+
+//  My Functions For Sollar Price
+
+public function fuelprice_Page(){
+    return view("admin.fuel.fuelprice");
+}
+
+
 }

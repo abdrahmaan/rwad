@@ -73,6 +73,8 @@
                         <th>رقم اللوحة</th>
                         <th>النوع</th>
                         <th>العداد</th>
+                        <th>رقم الشاسية</th>
+                        <th>تاريخ الرخصة</th>
                         <th>الفرع</th>
                         <th>التعديلات</th>
                     </thead>
@@ -83,6 +85,8 @@
                                 <td>{{$car->PlateNumber}}</td>
                                 <td>{{$car->CarType}}</td>
                                 <td>{{$car->SCounter}}</td>
+                                <td>{{$car->ShasehNumber}}</td>
+                                <td>{{$car->DateExpire}}</td>
                                 <td>{{$car->BranchName}}</td>
                                 <td class="d-flex justify-content-center">
                                     @if (session()->get('user-data')->Role == "Admin")

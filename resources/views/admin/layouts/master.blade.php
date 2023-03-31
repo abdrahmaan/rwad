@@ -33,14 +33,13 @@
             <img id="logo-header" class="mx-2" src="/includes/img/logo.png" width="60px" alt="logo">
         </h3>
 
-        <button class="btn" style="height: fit-content;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
+        <button class="btn btn-menu" style="height: fit-content;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
             <i class="bi bi-list" style="color: white; font-size: 40px;"></i>
         </button>
         
     </header>
 
-        
-
+ 
        @include('admin.layouts.sidebar')
 
        
@@ -125,37 +124,150 @@
       //firebase.analytics();
       const messaging = firebase.messaging();
         messaging.requestPermission()
+
       .then(function () {
+
         console.log("Notification permission granted.");
-          // get the token in the form of promise
-        return messaging.getToken()
+
+        // get the token in the form of promise
+        return messaging.getToken();
+
       })
+      // Save Token To Database    
       .then(function(token) {
-      // print the token on the HTML page     
-        console.log(token);
-      let tokenH = document.querySelector("h3#token");
-      tokenH.innerHTML = token;
-      
+
+
+          let username = "{{session()->get('user-data')->Username}}";
+          let device = window.innerWidth <= 800 ? "mopile" : "pc";
+
+          let formData = new FormData();
+
+          formData.append("token",token);
+          formData.append("username",username);
+          formData.append("device",device);
+
+        fetch(`https://alrwad.me/api/admin/fcmtoken`,{
+          method: "post",
+          body: formData
+        })
+        .then(res  => res.json())
+        .then(res => console.log(res))
+
         
       })
       .catch(function (err) {
         console.log("Unable to get permission to notify.", err);
       });
 
+  
+
       messaging.onMessage(function(payload) {
-          console.log(payload);
-          var notify;
+          let notify;
           notify = new Notification(payload.notification.title,{
               body: payload.notification.body,
               icon: payload.notification.icon,
-              tag: "Dummy"
           });
-          console.log(payload.notification);
+
+         notify.addEventListener("click",(e)=>{
+           e.preventDefault();
+           window.open(payload.notification.click_action)
+         })
+          // console.log(payload.notification);
       });
+
 
       self.addEventListener('notificationclick', function(event) {       
           event.notification.close();
+          // console.log(event);
       });
+
+
+</script>
+
+
+{{-- Test API For FCM Notification --}}
+<script>
+
+    let url = "https://fcm.googleapis.com/fcm/send";
+
+    let obj = {
+
+      registration_ids: [
+        "f6ulPpP0tPY:APA91bGHO2rXymFr_bDs1oeXQUT2vnfWOse80r2Bi4USzZn9XRAUrnmpYFUqkCKQ7-cN_u4dbJmgP4bO3keLapleFgzAptKOEkJdXXG2UsAxG_ZGLjIAgOOk5jS_Mivi3BTE5iNtz_wU",
+        "edxkd3yYt1I:APA91bH_QSm6VF-cxqq6Oh9tlKfEWBbDCn8uiiV7-TGWBHgfnVxwABaoDKqjah4y5I5aodWXtKEl2GJ__yT_yTEQkdrB4UXsPIJwQIagWcJmmFynpzSf6x5r0f5sF8fCFAaHkeunl2pl"
+
+    ],
+              notification :{
+                  title: "69 س - تغيير فلتر زيت",
+                  body : "تغيير فلتر زيت 300 كيلو عداد 200000 --- API",
+                  icon : "https://alrwad.abdelrahmaan.com/includes/img/logo.png",
+                  click_action: "http://127.0.0.1:8000/admin/notifcations",
+                  image: "https://alrwad.abdelrahmaan.com/includes/img/logo.png",
+              }
+
+    }
+    setTimeout(() => {
+        fetch(url,{
+          method: "post",
+          body:JSON.stringify(obj),
+          headers :{
+            "Content-Type" : "application/json",
+            "Authorization" : "key=AAAAOKq699c:APA91bEw7kBANGdxHUpQRS52rfw73nySdercsfi2fx3pu2rA_UsoCoQQb2neNWY_zqmOhF8jM2ZikFA1B7V8IXguhGxTu9uazuXVXfMbXfJHXFPSTRH5uvW01KFiGBYnXm5LRPxvQAKM"
+          }
+        })
+    }, 6000000);
+</script>
+
+<script>
+
+let menu = document.querySelector("header button.btn-menu");
+
+
+
+
+  // Open Menu Shortcut
+document.addEventListener("keydown",(e)=>{
+  if(e.ctrlKey && e.keyCode == 16){
+    menu.click();
+  }
+});
+
+
+// Reset Input Shortcut
+document.addEventListener("keydown",(e)=>{
+ 
+  if(e.ctrlKey && e.keyCode == 18){
+   if(! e.target.hasAttribute("readonly")){
+
+       e.target.value = "";
+    }
+ }
+});
+
+
+// Click Enter On Input To Focus Next Input
+document.addEventListener("keydown",(e)=>{
+ if(e.target.dataset.tab){
+    if(e.keyCode == 13){
+     e.preventDefault();
+      let nextInputIndex = e.target.dataset.tab;
+      let nextInput = document.querySelectorAll("input");
+
+      nextInput[nextInputIndex].focus();
+
+    }
+ }
+})
+
+
+// Click Enter On Input To Focus Next Input
+document.addEventListener("keydown",(e)=>{
+    if(e.keyCode == 13){
+     e.preventDefault();
+
+ }
+})
+
 
 
 </script>

@@ -8,7 +8,7 @@
 @section('content')
 
     
-    <form action="{{ route('sollars.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('fuel.store') }}" method="post" enctype="multipart/form-data">
       @csrf
       @method("POST")
      <div class="player-data d-flex flex-column align-items-center flex-lg-row flex-lg-row-reverse mt-4" style="min-height: calc(100vh - 90px);">
@@ -30,19 +30,15 @@
           </div>
           <div class="data-text col-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">عداد السيارة</label>
-            <input class="form-control w-100 text-center mx-auto" name="Counter" value="{{old('Counter')}}" type="number" placeholder="">
+            <input class="form-control w-100 text-center mx-auto" data-tab="6" name="Counter" value="{{old('Counter')}}" type="number" placeholder="">
+          </div>
+          <div class="data-text col-4 my-2 text-center mb-3">
+            <label class="text-light fs-4 mb-2">المبلغ المدفوع</label>
+            <input class="form-control w-100 text-center mx-auto" data-tab="7" name="CostLiter" value="{{old('CostLiter')}}" type="number" placeholder="">
           </div>
           <div class="data-text col-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">عدد الليترات</label>
             <input class="form-control w-100 text-center mx-auto" name="Liter" value="{{old('Liter')}}" type="number" placeholder="">
-          </div>
-          <div class="data-text col-4 my-2 text-center mb-3">
-            <label class="text-light fs-4 mb-2">سعر\لتر</label>
-            <input class="form-control w-100 text-center mx-auto" name="CostLiter" value="{{old('CostLiter')}}" type="number" placeholder="">
-          </div>
-          <div class="data-text col-4 my-2 text-center mb-3">
-            <label class="text-light fs-4 mb-2">الإجمالى</label>
-            <input class="form-control w-100 text-center mx-auto" name="Total" value="{{old('Total')}}" type="number" placeholder="">
           </div>
           <div class="data-text col-4 my-2 text-center mb-3">
             <label class="text-light fs-4 mb-2">الفرع</label>
@@ -111,7 +107,7 @@ function Events(){
     });
 
 
-    if(e.ctrlKey && e.keyCode == 13){
+    if(e.keyCode == 13){
 
 
     let newInputs = document.querySelectorAll("input");
@@ -124,7 +120,7 @@ function Events(){
        if(cars[i].Tabashery == Number(e.target.value)){
         newInputs[3].value = cars[i].PlateNumber;
         newInputs[4].value = cars[i].CarType;
-        newInputs[9].value = cars[i].BranchName;
+        newInputs[8].value = cars[i].BranchName;
         newInputs[5].focus();
         isFound = true;
 
@@ -160,21 +156,12 @@ function Events(){
 
 
   // Click ctrl + Enter On Sollar Price To Get Total
-  inputs[7].addEventListener("keydown",(e)=>{
-    if(e.ctrlKey && e.keyCode == 13){
-      let newInputs = document.querySelectorAll("input");
-      newInputs[8].value =  newInputs[7].value  *  newInputs[6].value;
-
-
-    }
-  });
-
-  // Click ctrl + Enter On Sollar Price To Get Total
   inputs[6].addEventListener("keydown",(e)=>{
 
-    if(e.ctrlKey && e.keyCode == 13){
+    if(e.keyCode == 13){
+      e.preventDefault();
       let newInputs = document.querySelectorAll("input");
-      newInputs[8].value =  newInputs[7].value  *  newInputs[6].value;
+      newInputs[7].value =  Math.floor(newInputs[6].value  /  10);
 
 
     }

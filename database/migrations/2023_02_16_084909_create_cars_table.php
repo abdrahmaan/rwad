@@ -30,6 +30,7 @@ class CreateCarsTable extends Migration
             $table->integer("NextKawtsh");
             $table->integer("NextDbryag");
             $table->integer("NextFramel");
+            $table->string("CarImg");
             $table->timestamps();
         });
     }

@@ -21,6 +21,15 @@ label,h1,h2,h3,h4,h5,h6{
     padding: 0px !important;
 }
 
+h2#shadow{
+    text-shadow: -3px 4px 10px black !important;
+    white-space: nowrap !important;
+}
+
+span{
+    white-space: nowrap !important;
+}
+
 body{
 
     min-height: 100vh;
@@ -34,6 +43,13 @@ body{
     
 }
 
+
+div#heading-area{
+
+    height: 70px !important;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgb(32, 157, 182) 100%) !important; 
+
+  }
 
 .accordion-button:not(.collapsed){
     background-color: black !important;
@@ -150,6 +166,6 @@ td {
     /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgb(41, 83, 92) 100%);  */
 
 background: linear-gradient(203deg, rgba(133,24,24,1) 20%, rgba(9,9,121,1) 40%);
-    opacity: 0.6;
+    opacity: 0.8;
     z-index: -1;
 }

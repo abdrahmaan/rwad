@@ -1,256 +1,186 @@
 @extends('admin.layouts.master')
 
 
-@section('title',"المصروفات")
-    
 
-
-@section('css')
-    
-
-@endsection
+@section('title',"مراجعة الصيانات")
+@section('icon',"bi bi-car-front-fill")
 
 
 @section('content')
-        
-<div class="container">
+   
+        <div class="container mt-5">
+            <form action="/admin/search/maintainces" method="post">
+                @csrf
+            <div class="row flex-row-reverse justify-content-center align-items-center m-0 p-0" style="min-height: 200px">
+                <div class="data-name col-10 m-4">
+                    <h3 class="text-light text-center mb-3">طباشيرى</h3>
+                    <input type="text" name="Tabashery" placeholder="طباشيري أو رقم اللوحة" class="form-control text-center mx-auto w-50">
+                </div>  
+                <div class="col-10 d-flex justify-content-center" dir="rtl">
+                <div class="data-name col-3 m-4">
+                    <h3 class="text-light text-center mb-3">تاريخ البداية</h3>
+                    <input type="date" name="StartDate" placeholder="طباشيري أو رقم اللوحة" value="{{old("StartDate")}}" class="form-control text-center mx-auto">
+                </div>
+                <div class="data-name col-3 m-4">
+                    <h3 class="text-light text-center mb-3">تاريخ النهاية</h3>
+                    <input type="date" name="EndDate" placeholder="طباشيري أو رقم اللوحة" value="{{old("EndDate")}}" class="form-control text-center mx-auto">
+                </div>
+               </div>
+             
+                <div class="data-filter col-10 col-lg-3 my-2">
+                    <h3 class="text-light text-center mb-2">النوع</h3>
+                    <select class="form-control text-center" name="CarType" id="">
+                        <option value="الكل">الكل</option>
+                        @foreach ($CarTypes as $CarType)
+                        <option value="{{$CarType->CarType}}">{{$CarType->CarType}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="data-filter col-10 col-lg-3 my-2">
+                    <h3 class="text-light text-center mb-2">الفرع</h3>
+                    <select class="form-control text-center" name="BranchName" id="">
+                        <option value="الكل">الكل</option>
+                        @foreach ($Branches as $Branch)
+                        <option value="{{$Branch->BranchName}}">{{$Branch->BranchName}}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-    <div class="row flex-row-reverse justify-content-center m-0 p-0" style="min-height: 200px">
-        <div class="data-date col-lg-5 col-10 mb-4">
-            <h3 class="text-warning text-center mb-3">تاريخ البداية</h3>
-            <input type="date" placeholder="إسم اللاعب ثلاثى" class="form-control text-center mx-auto w-50">
+                <div class="data-name col-12   m-4 d-flex justify-content-center align-items-center">
+                   <div class="bg-success p-1 rounded d-flex">
+                    <h6 class="text-light   text-center mx-2">إستخراج البيانات إكسيل</h6>
+                    <input type="checkbox" name="Export" placeholder="طباشيري أو رقم اللوحة" class="">
+                   </div>
+                </div>
+
+
+                <div class="data-btn col-9 col-lg-7">
+                    <button id="Search" class="btn btn-danger text-light w-50 d-block mx-auto my-4">بحث</button>
+
+                </div>
+            </div>
+        </form>
+
         </div>
-        <div class="data-date col-lg-5 col-10 mb-4">
-            <h3 class="text-warning text-center mb-3">تاريخ النهاية</h3>
-            <input type="date" placeholder="إسم اللاعب ثلاثى" class="form-control text-center mx-auto w-50">
-        </div>
-        <div class="data-filter col-10 col-lg-5 my-2">
-            <h3 class="text-warning text-center mb-2">الفرع</h3>
-            <select class="form-control text-center" name="" id="">
-            <option value="الكل">الكل</option>
-                @foreach ($Branches as $Branch)
-                <option value="{{$Branch->BranchName}}">{{$Branch->BranchName}}</option>
-                @endforeach
-            </select>
-        </div>  
-        <div class="data-filter col-10 col-lg-5 my-2">
-            <h3 class="text-warning text-center mb-2">النوع</h3>
-            <select class="form-control text-center" name="" id="">
-            <option value="الكل">الكل</option>
-            <option value="مرتبات">مرتبات</option>
-            <option value="نثريات">نثريات</option>
-            <option value="صيانة">صيانة</option>
-            <option value="أدوات رياضية">أدوات رياضية</option>
-                
-            </select>
-        </div>  
-        <div class="data-btn col-9 col-lg-7">
-            <div id="Search" class="btn btn-warning text-dark w-100 d-block mx-auto my-4">بحث</div>
+
+
+        @php
+            if(isset($Data)){
+                // dd($Data);
+            }
+        @endphp
+        @isset($Data)
+
+        @if (count($Data) > 0)
 
         </div>
-    </div>
-</div>
-    <div id="players-area" class="row  d-flex justify-content-center m-0 p-0" style="min-height: 300px">
+            <div class="container py-4 d-flex flex-column">
+                <div class="card w-25 align-self-end my-3 border-0" style="" dir="rtl">
+                    <div class="card-header border-0 bg-dark text-light">
+                        <i class="bi bi-gear-wide-connected mx-1 p-0"></i>
+                        إجمالى فرق العداد
+                    </div>
+                    <div class="card-body">
+                        {{-- <h4>{{$counter}} كيلو متر</h4> --}}
+                    </div>
+                </div>
+                <table class="table table-dark text-center align-middle table-bordered" dir="rtl">
+                    <thead>
+                        <th>#</th>
+                        <th>طباشيرى</th>
+                        <th>رقم اللوحة</th>
+                        <th>النوع</th>
+                        <th>عداد الصيانة</th>
+                        <th>نوع الغيار</th>
+                        <th>العدد</th>
+                        <th>ملاحظات</th>
+                        <th>الفرع</th>
+                        <th>المسوؤل</th>
+                        <th>التاريخ</th>
+                        <th>التعديلات</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($Data as $Maintaince)
+                            <tr>
+                                <td>
+                                    <img src="/includes/car_imgs/{{$Maintaince->CarImg}}" width="70px" alt="">
+                                </td>
+                                <td>{{$Maintaince->Tabashery}}</td>
+                                <td>{{$Maintaince->PlateNumber}}</td>
+                                <td>{{$Maintaince->CarType}}</td>
+                                <td>{{$Maintaince->Counter}}</td>
+                                <td>{{$Maintaince->CategName}}</td>
+                                <td>{{$Maintaince->Count}}</td>
+                                <td>{{$Maintaince->Desc}}</td>
+                                <td>{{$Maintaince->BranchName}}</td>
+                                <td>{{$Maintaince->op}}</td>
+                                <td>{{$Maintaince->created_at}}</td>
+                                <td class="d-flex justify-content-center py-4">
+                                    @if (session()->get('user-data')->Role == "Admin")
+                                    <form action="/admin/maintainces/{{$Maintaince->id}}" method="POST">
+                                        @csrf
+                                        @method("delete")
+                                        <button class="btn btn-danger" type="submit">حذف</button>
+                                    </form>
 
-        <table class="table table-dark table-striped  w-75 mx-auto text-center">
-            <thead>
-               <tr>
-                <th>التعديلات</th>
-                <th>المسؤول</th>
-                <th>التاريخ</th>
-                <th>الفرع</th>
-                <th>النوع</th>
-                <th>القيمة</th>
-                <th>البيان</th>
-               </tr>
-            </thead>
-            <tbody id="attendance-area">
-            </tbody>
-        </table>
+                                    <a class="btn btn-success mx-2" href="/admin/maintainces/{{$Maintaince->id}}/edit">تعديل</a>
+                                    @else 
 
-</div>
-    
-@endsection
+                                    X
 
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+        @else 
+        <script>
+            Swal.fire({
+              icon: "info",
+              title: "! تنبيه",
+              text: 'لا يوجد بيانات',
+               confirmButtonText: "رجوع",
+               confirmButtonColor: "#e01a22",
+            })
+          </script>
+        @endif
+        @endisset
+
+
+
+@endsection 
 
 
 
 @section('script')
-<script>
-        
-    fetch("http://ecoach.egy/api/admin/payouts/all")
-    .then(res => res.json())
-    .then(res =>{
-        console.log(res);
-        window.sessionStorage.setItem('payouts',JSON.stringify(res));
 
-    });
+    <script>
+          let inputs = document.querySelectorAll("input");
+          let btn = document.querySelectorAll('button#Search')[0];
+          let form = document.querySelector("form");
+          inputs[1].focus();
+        let date = new Date().toISOString().split("T")[0];
+        inputs[2].value = date;
+        inputs[3].value = date;
+      
 
-    function HandleSearch() {
+          document.addEventListener("keydown",(e)=>{
+              if(e.ctrlKey && e.keyCode == 13){
+                form.submit();
+              }
+          });
 
-            // Inputs & Selects
-            let dateSearch = document.querySelectorAll("input[type='date']");
-            let StartDate = dateSearch[0].value;
-            let EndDate = dateSearch[1].value;
-            let select = document.querySelectorAll("select");
-            let selectBranch = select[0].value;
-            let selectType = select[1].value;
-            let counterHTML = document.querySelector("h3#counter");
+          inputs[4].addEventListener("click",(e)=>{
+              if(e.target.checked == true){
+                btn.innerText = "إستخراج"
+              } else {
+                btn.innerText = "بحث"
 
-            // AreaPlayer
-            let Area = document.querySelector("#attendance-area");
+              }
+          });
 
-
-            // Filters Checkers
-            let TypeFilter = false;
-            let BranchNameFilter = false;
-
-
-
-            // Counter & Total Amount
-            let counter = 0;
-            let TotalAmount = 0;
-
-            let DefaultImagepath ='/includes/img/bg-section.jpg';
-
-            // Start Filter Logic  
-            Area.innerHTML = "";
-            Area.className.includes("d-none") ? Area.classList.remove("d-none")  : null;
-
-            let data = JSON.parse(window.sessionStorage.getItem('payouts'));
-
-
-            data.forEach(payout => {  
-
-                // console.log(player);
-                let payoutHTML = `
-                        <tr>
-                            <td class="align-middle">
-                             ${ window.localStorage.getItem("role") !== null ?
-                                  ` 
-                                 <form action="/admin/payouts/${payout.id}" method="POST" class="d-inline">
-                                    @csrf
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }} 
-                                    <button type="submit" class="btn btn-danger my-2">حذف</button>
-                                </form>
-                                
-                                `: "X" }
-                            </td>
-                            <td class="fs-5 align-middle">${payout.User}</td>
-                            <td class="fs-5 align-middle">${payout.created_at.split(":")[0].split("T")[0]}</td>
-                            <td class="fs-5 align-middle">${payout.Branch}</td>
-                            <td class="fs-5 align-middle">${payout.Type}</td>
-                            <td class="fs-5 align-middle">${payout.Amount}</td>
-                            <td class="fs-5 align-middle">${payout.Desc}</td>
-                        </tr>
-                `;  
-  
-  
-
-
-                  ///2023-01-31T17:11:23.000000Z - Date Type
-
-
-                let DatePlayerAttendance = payout.created_at.split(":")[0].split("T")[0];
-
-
-
-                if(DatePlayerAttendance >= StartDate && DatePlayerAttendance <= EndDate){
-
-                if(selectType == "الكل" ){
-                    TypeFilter = true;
-
-                } else {
-                    if(selectType == payout.Type){
-
-                        TypeFilter = true;
-
-
-                    } else {
-
-                        return;
-                    }
-
-                }
-
-
-                if(selectBranch == "الكل" ){
-                    BranchNameFilter = true;
-
-                } else {
-                    if(selectBranch == payout.Branch){
-                        BranchNameFilter = true;
-                    } else {
-
-                        return;
-                    }
-
-                }
-
-                if(TypeFilter && BranchNameFilter){
-
-                    //  Log The Player Found
-
-                    // Plus Counter
-                    counter += 1;
-
-                    // Plus Total
-
-                    TotalAmount += Number(payout.Amount);
-
-                    // Render Player
-                    Area.innerHTML += payoutHTML;
-
-                }
-                } 
-
-                
-           
-
-            });
-
-            if(counter < 1){
-
-                Swal.fire({
-                icon: "info",
-                title: "لا يوجد بيانات",
-                confirmButtonText: "رجوع",
-                 confirmButtonColor: "#e01a22",
-            })
-                Area.innerHTML = "";
-                Area.className.includes("d-none") ? null : Area.classList.add("d-none");
-                // counterHTML.className.includes("d-none") ? null : counterHTML.classList.add("d-none");
-                console.log("no Data Found");
-                
-                
-            } else {
-                 TotalHTML = `
-                 <tr>
-                    <td class="fs-5 align-middle" style='direction: rtl' colspan=3>${TotalAmount} جنية</td>
-                    <td class="fs-5 align-middle" colspan=4>المجموع</td>
-                    </tr>
-                    `;
-
-
-                Area.innerHTML += TotalHTML;
-                Area.className.includes("d-none") ? Area.classList.remove("d-none") : null;
-            }
-
-}
-    
-
-
-    
-    let Dates = document.querySelectorAll("input[type='date']");
-
-    StandardDate = new Date();
-    Dates[0].value = StandardDate.toISOString().split("T")[0]
-    Dates[1].value = StandardDate.toISOString().split("T")[0]
-
-    let btn = document.querySelector("div#Search");
-    
-    btn.addEventListener("click",() => HandleSearch());
-    
-    </script>
+    </script>          
 @endsection
