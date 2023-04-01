@@ -146,7 +146,7 @@
           formData.append("username",username);
           formData.append("device",device);
 
-        fetch(`https://alrwad.me/api/admin/fcmtoken`,{
+        fetch(`https://alrwad.abdelrahmaan.com/api/admin/fcmtoken`,{
           method: "post",
           body: formData
         })

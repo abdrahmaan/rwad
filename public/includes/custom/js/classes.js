@@ -420,7 +420,7 @@ class Validator {
 class API {
 
    
-     url = "http://alrwad.me/api";
+     url = "http://alrwad.abdelrahmaan.com/api";
 
      GetCarsData() {
         fetch(`${this.url}/admin/cars`)
