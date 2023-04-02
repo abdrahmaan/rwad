@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Branch;
 
 
 class NotificationController extends Controller
@@ -14,7 +15,7 @@ class NotificationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($title,$body,$image = "",$roles)
+    public function index()
     {
 
         $branchs = Branch::all();
