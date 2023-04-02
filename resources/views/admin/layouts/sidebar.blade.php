@@ -19,7 +19,7 @@
                   <i class="bi bi-graph-up-arrow mx-1"></i>
                 </a>
               <!-- الإشعارات -->
-              <a class="dropdown-item text-light text-end pe-3 py-2" href="/admin/notifcations">
+              <a class="dropdown-item text-light text-end pe-3 py-2" href="/admin/notifications">
                 <span class="badge badge-danger bg-danger">4</span>
 
                   الإشعارات
