@@ -16,7 +16,11 @@ class NotificationController extends Controller
      */
     public function index($title,$body,$image = "",$roles)
     {
+
+        $branchs = Branch::all();
      
+
+        return view('admin.notification.index' , ['Branches' => $branchs]);
 
     }
 
@@ -60,7 +64,7 @@ class NotificationController extends Controller
         return json_encode($data);
     }
 
-    public function Send_FCM($title = "الرواد هاى سيرفيس",$body = "إختبار الإشعارات",$image = "",$roles = "الكل"){
+    public function Send_FCM_Test($title = "الرواد هاى سيرفيس",$body = "إختبار الإشعارات",$image = "",$roles = "الكل"){
 
         $registration_ids = [];
 
@@ -129,6 +133,92 @@ class NotificationController extends Controller
 
     }
 
+    public function Send_FCM(Request $request){
+
+        $title = $request->Title;
+        $body = $request->Body;
+        $roles = $request->Roles;
+
+        // return dd($request);
+        
+        $registration_ids = [];
+
+        if($roles == "الكل"){
+
+                
+            $tokens_pc = User::whereNotNull('token_pc')->pluck('token_pc')->toArray();
+            $tokens_mopile = User::whereNotNull('token_mopile')->pluck('token_mopile')->toArray();
+       
+            
+            $Mobile_And_PC_Tokens = array_merge($tokens_pc, $tokens_mopile);
+            $registration_ids = array_merge($registration_ids,$Mobile_And_PC_Tokens);
+
+
+        } else {
+
+
+                $tokens_pc = User::whereNotNull('token_pc')->where('Role', $roles)->pluck('token_pc')->toArray();
+                $tokens_mopile = User::whereNotNull('token_mopile')->where('Role', $roles)->pluck('token_mopile')->toArray();
+     
+                $Mobile_And_PC_Tokens = array_merge($tokens_pc, $tokens_mopile);
+                $registration_ids = array_merge($registration_ids,$Mobile_And_PC_Tokens);
+     
+
+        }
+
+        if($registration_ids){
+
+            $ch = curl_init();
+    
+            $ServerKey = "AAAAOKq699c:APA91bEw7kBANGdxHUpQRS52rfw73nySdercsfi2fx3pu2rA_UsoCoQQb2neNWY_zqmOhF8jM2ZikFA1B7V8IXguhGxTu9uazuXVXfMbXfJHXFPSTRH5uvW01KFiGBYnXm5LRPxvQAKM";
+            
+            $notification = array
+                  (
+                    'registration_ids'   => $registration_ids,
+                    'notification'  => [
+                    "title"=> $title,
+                    "body"=> $body,
+                    "icon"=> "https://alrwad.abdelrahmaan.com/includes/img/logo.png",
+                    "click_action"=> "http://alrwad.me/admin/notifications",
+                    "image"=> ""
+                    ]
+                 );
+    
+        
+    
+            $headers = array
+                    (
+                        'Authorization: key=' . $ServerKey,
+                        'Content-Type: application/json'
+            );
+    
+            curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
+            curl_setopt( $ch,CURLOPT_POST, true );
+            curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+            curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+            curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+            curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode($notification) );
+    
+            $result = json_decode(curl_exec($ch));
+
+            if($result->success){
+
+                session()->flash("message","تم إرسال الإشعار بنجاح");
+
+                return redirect("/admin/notifications/create");
+            }
+
+            
+    
+        }  else {
+
+            session()->flash("error","لا يوجد مستخدمين فى تلك الصلاحية");
+
+            return redirect("/admin/notifications/create");
+        }
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -136,7 +226,7 @@ class NotificationController extends Controller
      */
     public function create()
     {
-        //
+         return view("admin.notification.create");
     }
 
     /**
