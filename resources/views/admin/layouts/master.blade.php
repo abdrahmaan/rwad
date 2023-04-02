@@ -146,7 +146,7 @@
           formData.append("username",username);
           formData.append("device",device);
 
-        fetch(`https://alrwad.abdelrahmaan.com/api/admin/fcmtoken`,{
+        fetch(`http://127.0.0.1:8000/api/admin/fcmtoken`,{
           method: "post",
           body: formData
         })

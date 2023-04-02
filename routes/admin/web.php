@@ -29,13 +29,10 @@ Route::prefix("admin")->middleware('auth')->group(function (){
         $branchs = Branch::all();
         return view('admin.logging.index' , ['Branches' => $branchs]);
     });
-    Route::get('notifcations', function () {
-        $branchs = Branch::all();
-        return view('admin.notifcation.index' , ['Branches' => $branchs]);
-    });
 
-    Route::get('notifcations-send','App\Http\Controllers\Admin\NotificationController@index');
-    Route::get('notifcations-tokens','App\Http\Controllers\Admin\NotificationController@Send_FCM');
+
+    Route::resource('notifications', 'App\Http\Controllers\Admin\NotificationController');
+    Route::post('notifications-send','App\Http\Controllers\Admin\NotificationController@Send_FCM');
 
     Route::get('test', function () {
         return view('admin..maintaince.mokeup');
