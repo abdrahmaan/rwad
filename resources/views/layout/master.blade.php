@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- PWA  -->
-  <meta name="theme-color" content="#FFFF"/>
+  <meta name="theme-color" content="#00032b"/>
   <link rel="apple-touch-icon" href="{{ asset('logo.PNG') }}">
   <link rel="manifest" href="{{ asset('/manifest.json') }}">
     {{-- Splash Screens --}}
