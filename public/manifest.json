@@ -2,10 +2,10 @@
     "name": "Al Rwad High Services",
     "short_name": "Al-Rwad HS",
     "start_url": "/index.php",
-    "background_color": "#FFFFF",
+    "background_color": "#FFFF",
     "description": "Tutorial of Laravel Package",
     "display": "standalone",
-    "theme_color": "#FFFFF",
+    "theme_color": "#00032b",
     "icons": [
         {
             "src": "logo.png",

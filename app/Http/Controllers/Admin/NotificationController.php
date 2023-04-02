@@ -107,7 +107,7 @@ class NotificationController extends Controller
                     "title"=> $title,
                     "body"=> $body,
                     "icon"=> "https://alrwad.abdelrahmaan.com/includes/img/logo.png",
-                    "click_action"=> "http://alrwad.me/admin/notifcations",
+                    "click_action"=> "https://alrwad.abdelrahmaa.com/admin/notifcations",
                     "image"=> $image
                     ]
                  );
