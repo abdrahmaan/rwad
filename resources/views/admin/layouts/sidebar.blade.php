@@ -231,11 +231,11 @@
                       <i class="bi bi-pin-map-fill"></i>
                     </button>
                     <ul class="dropdown-menu  w-100 position-relative text-end rounded-0" style="background-color: #101733;">
-                      <li><a class="dropdown-item text-light" href="{{route('sollars.create')}}">
+                      <li><a class="dropdown-item text-light" href="{{route('fuel.create')}}">
                           تسجيل سولار
                           <i class="bi bi-fuel-pump mx-1"></i>
                         </a></li>
-                      <li><a class="dropdown-item text-light" href="{{route('sollars.index')}}">
+                      <li><a class="dropdown-item text-light" href="{{route('fuel.index')}}">
                           بحث فى تسجيلات السولار
                           <i class="bi bi-pie-chart-fill mx-1"></i>
                         </a></li>
@@ -297,9 +297,9 @@
                     </div>
                     <!-- Sidebar End -->
             @endif 
-               {{-- مدخل بيانات --}}
+               {{-- مدير إدخال بيانات --}}
             @if (session()->get('user-data')->Role == "مدير إدخال بيانات")
-                                  <!-- الإحصائيات -->
+              <!-- الإحصائيات -->
               <a class="dropdown-item text-light text-end pe-3 py-2" href="{{route('dashboard.index')}}">
                   الإحصائيات
                   <i class="bi bi-graph-up-arrow mx-1"></i>
@@ -344,11 +344,11 @@
                       <i class="bi bi-pin-map-fill"></i>
                     </button>
                     <ul class="dropdown-menu  w-100 position-relative text-end rounded-0" style="background-color: #101733;">
-                      <li><a class="dropdown-item text-light" href="{{route('sollars.create')}}">
+                      <li><a class="dropdown-item text-light" href="{{route('fuel.create')}}">
                           تسجيل سولار
                           <i class="bi bi-fuel-pump mx-1"></i>
                         </a></li>
-                      <li><a class="dropdown-item text-light" href="{{route('sollars.index')}}">
+                      <li><a class="dropdown-item text-light" href="{{route('fuel.index')}}">
                           بحث فى تسجيلات السولار
                           <i class="bi bi-pie-chart-fill mx-1"></i>
                         </a></li>
@@ -365,7 +365,7 @@
                           تسجيل صيانة جديدة
                           <i class="bi bi-gear-wide-connected mx-1"></i>
                         </a></li>
-                      <li><a class="dropdown-item text-light" href="{{route('cars.index')}}">
+                      <li><a class="dropdown-item text-light" href="{{route('maintainces.index')}}">
                           بحث فى صيانة السيارات
                           <i class="bi bi-pie-chart-fill mx-1"></i>
                         </a></li>
@@ -381,63 +381,6 @@
                     </div>
                     <!-- Sidebar End -->
             @endif 
-
-            {{-- مسؤول مخزن --}}
-            @if(session()->get('user-data')->Role == "مسؤول مخزن")
-              <!-- المخازن -->
-              <div class="dropdown w-100 mb-2">
-                <button class="btn text-light dropdown-toggle text-end w-100 pe-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                إدارة المخازن
-                  <i class="bi bi-pin-map-fill"></i>
-                </button>
-                <ul class="dropdown-menu  w-100 position-relative text-end rounded-0" style="background-color: #101733;">
-                  <li><a class="dropdown-item text-light" href="{{route('inventory.create')}}">
-                      تسجيل صنف
-                      <i class="bi bi-file-earmark-plus mx-1"></i>
-                    </a></li>
-                  <li><a class="dropdown-item text-light" href="{{route('cars.index')}}">
-                      بحث فى المخازن
-                      <i class="bi bi-pie-chart-fill mx-1"></i>
-                    </a></li>
-                </ul>
-                </div>
-                  <!-- تسجيل الخروج -->
-                  <a class="dropdown-item text-light text-end pe-3 py-2" href="/admin/logout">
-                    تسجيل الخروج
-                    <i class="bi bi-box-arrow-in-left mx-1"></i>
-                  </a>
-                </div>
-              </div>
-                <!-- Sidebar End -->
-            @endif
-            {{-- مشتريات --}}
-            @if(session()->get('user-data')->Role == "مشتريات")
-                          <!-- المشتريات -->
-                          <div class="dropdown w-100 mb-2">
-                            <button class="btn text-light dropdown-toggle text-end w-100 pe-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            إدارة المشتريات
-                              <i class="bi bi-pin-map-fill"></i>
-                            </button>
-                            <ul class="dropdown-menu  w-100 position-relative text-end rounded-0" style="background-color: #101733;">
-                              <li><a class="dropdown-item text-light" href="{{route('purchases.create')}}">
-                                  تسجيل أمر شراء
-                                  <i class="bi bi-coin mx-1"></i>
-                                </a></li>
-                              <li><a class="dropdown-item text-light" href="{{route('cars.index')}}">
-                                  بحث فى اوامر الشراء
-                                  <i class="bi bi-pie-chart-fill mx-1"></i>
-                                </a></li>
-                            </ul>
-                        </div>
-                  <!-- تسجيل الخروج -->
-                  <a class="dropdown-item text-light text-end pe-3 py-2" href="/admin/logout">
-                    تسجيل الخروج
-                    <i class="bi bi-box-arrow-in-left mx-1"></i>
-                  </a>
-                </div>
-              </div>
-                <!-- Sidebar End -->
-            @endif
 
              
 

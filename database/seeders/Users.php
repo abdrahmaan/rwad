@@ -30,7 +30,7 @@ class Users extends Seeder
             "FullName" => "أحمد سعيد موسى",
             "Username" => "mr.ahmed",
             "Password" => "123",
-            "Role" => "مدير إدخال البيانات",
+            "Role" => "مدير إدخال بيانات",
         ]);
 
         User::create([
